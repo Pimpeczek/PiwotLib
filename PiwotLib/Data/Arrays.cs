@@ -164,7 +164,7 @@ namespace PiwotToolsLib.Data
         /// <typeparam name="T">Type of the array.</typeparam>
         /// <param name="array">The array to be expanded.</param>
         /// <param name="length">The length of the new array.</param>
-        /// <param name="value">The value assigned to the new fields.</param>
+        /// <param name="func">Function used to assign new values.</param>
         public static T[] BuildExpandedArray<T>(T[] array, int length, Func<int, T> func)
         {
             if (length < array.Length)
@@ -312,6 +312,96 @@ namespace PiwotToolsLib.Data
         public static T[] BuildSubArray<T>(T[] array, Func<T, int, bool> condition)
         {
             return array.Where(condition).ToArray();
+        }
+
+
+        /// <summary>Returns a new instance expanded to given dimentions.</summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="array">The array to be expanded.</param>
+        /// <param name="dimentions">The dimentions of the new array.</param>
+        public static T[,] BuildExpandedArray<T>(T[,] array, int[] dimentions)
+        {
+            int[] oldLen = new int[] { array.GetLength(0), array.GetLength(1) };
+            if (dimentions[0] < oldLen[0] || dimentions[1] < oldLen[0])
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+
+            T[,] expandedArray = new T[dimentions[0], dimentions[1]];
+            for (int i = 0; i < oldLen[0]; i++)
+            {
+                for (int j = 0; j < oldLen[1]; j++)
+                {
+                    expandedArray[i,j] = array[i,j];
+                }
+            }
+            return expandedArray;
+        }
+
+        /// <summary>Returns a new instance expanded to given dimentions with empty fields assigned a given value.</summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="array">The array to be expanded.</param>
+        /// <param name="dimentions">The dimentions of the new array.</param>
+        /// <param name="value">The value assigned to the new fields.</param>
+        public static T[,] BuildExpandedArray<T>(T[,] array, int[] dimentions, T value)
+        {
+            int[] oldLen = new int[] { array.GetLength(0), array.GetLength(1) };
+            if (dimentions[0] < oldLen[0] || dimentions[1] < oldLen[0])
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+
+            T[,] expandedArray = new T[dimentions[0], dimentions[1]];
+
+            for (int i = 0; i < oldLen[0]; i++)
+            {
+                for (int j = 0; j < oldLen[1]; j++)
+                {
+                    expandedArray[i, j] = array[i, j];
+                }
+            }
+
+            for (int i = 0; i < oldLen[0]; i++)
+            {
+                for (int j = 0; j < oldLen[1]; j++)
+                {
+                    expandedArray[i, j] = value;
+                }
+            }
+            return expandedArray;
+        }
+
+        /// <summary>Returns a new instance expanded to a given length with empty fields assigned using a fiven function.</summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="array">The array to be expanded.</param>
+        /// <param name="dimentions">The dimentions of the new array.</param>
+        /// <param name="func">Function used to assign new values.</param>
+        public static T[,] BuildExpandedArray<T>(T[,] array, int[] dimentions, Func<int, int, T> func)
+        {
+            int[] oldLen = new int[] { array.GetLength(0), array.GetLength(1) };
+            if (dimentions[0] < oldLen[0] || dimentions[1] < oldLen[0])
+            {
+                throw new ArgumentOutOfRangeException("length");
+            }
+
+            T[,] expandedArray = new T[dimentions[0], dimentions[1]];
+
+            for (int i = 0; i < oldLen[0]; i++)
+            {
+                for (int j = 0; j < oldLen[1]; j++)
+                {
+                    expandedArray[i, j] = array[i, j];
+                }
+            }
+
+            for (int i = 0; i < oldLen[0]; i++)
+            {
+                for (int j = 0; j < oldLen[1]; j++)
+                {
+                    expandedArray[i, j] = func(i, j);
+                }
+            }
+            return expandedArray;
         }
         #endregion
 
