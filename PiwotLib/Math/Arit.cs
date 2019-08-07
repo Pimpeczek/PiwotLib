@@ -116,6 +116,34 @@ namespace PiwotLib.Math
                 return inclusiveMax;
             return value;
         }
+
+        ///<summary>Returns value clamped between inclusiveMin and inclusiveMax.
+        ///</summary>
+        ///<param name="value">The value to be clamped.</param>
+        ///<param name="inclusiveMin">The inclusive lower bound of the clamping range.</param>
+        ///<param name="inclusiveMax">The inclusive upper bound of the clamping range.</param>
+        public static IComparable Clamp(IComparable value, IComparable inclusiveMin, IComparable inclusiveMax)
+        {
+            if (value.CompareTo(inclusiveMin) < 0)
+                return inclusiveMin;
+            if (value.CompareTo(inclusiveMax) > 0)
+                return inclusiveMax;
+            return value;
+        }
+
+        ///<summary>Returns value clamped between inclusiveMin and inclusiveMax.
+        ///</summary>
+        ///<param name="value">The value to be clamped.</param>
+        ///<param name="inclusiveMin">The inclusive lower bound of the clamping range.</param>
+        ///<param name="inclusiveMax">The inclusive upper bound of the clamping range.</param>
+        public static T Clamp<T>(IComparable value, IComparable inclusiveMin, IComparable inclusiveMax)
+        {
+            if (value.CompareTo(inclusiveMin) < 0)
+                return (T)inclusiveMin;
+            if (value.CompareTo(inclusiveMax) > 0)
+                return (T)inclusiveMax;
+            return (T)value;
+        }
         #endregion
 
         #region Greater - Lesser choosing
