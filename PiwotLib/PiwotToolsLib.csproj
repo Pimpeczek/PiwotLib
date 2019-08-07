@@ -49,10 +49,10 @@
   <ItemGroup>
     <Compile Include="Data\Arrays.cs" />
     <Compile Include="Data\Stringer.cs" />
-    <Compile Include="Math\Arit.cs" />
-    <Compile Include="Math\Int2.cs" />
-    <Compile Include="Math\Int3.cs" />
-    <Compile Include="Math\Rand.cs" />
+    <Compile Include="PMath\Arit.cs" />
+    <Compile Include="PMath\Int2.cs" />
+    <Compile Include="PMath\Int3.cs" />
+    <Compile Include="PMath\Rand.cs" />
     <Compile Include="Misc.cs" />
     <Compile Include="RuntimeTestingClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -81,7 +81,7 @@ namespace PiwotToolsLib
         }
         public static Color RandomColor()
         {
-            return Color.FromArgb(Math.Rand.Int(256), Math.Rand.Int(256), Math.Rand.Int(256));
+            return Color.FromArgb(PMath.Rand.Int(256), PMath.Rand.Int(256), PMath.Rand.Int(256));
         }
         public static Color RandomColor(int seed)
         {

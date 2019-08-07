@@ -326,7 +326,7 @@ namespace PiwotToolsLib.Data
             int randomPos;
             for (int i = 0; i < array.Length; i++)
             {
-                randomPos = Math.Rand.Int(array.Length);
+                randomPos = PMath.Rand.Int(array.Length);
                 temp = newArray[i];
                 newArray[i] = newArray[randomPos];
                 newArray[randomPos] = temp;
@@ -343,7 +343,7 @@ namespace PiwotToolsLib.Data
             int randomPos;
             for (int i = 0; i < array.Length; i++)
             {
-                randomPos = Math.Rand.Int(array.Length);
+                randomPos = PMath.Rand.Int(array.Length);
                 temp = array[i];
                 array[i] = array[randomPos];
                 array[randomPos] = temp;
