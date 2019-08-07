@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PiwotLib.Math
+namespace PiwotToolsLib.Math
 {
     /// <summary>Class storing two integers. All operations are pointwise.</summary>
     public class Int2: IComparable

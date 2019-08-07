@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PiwotLib.Data
+namespace PiwotToolsLib.Data
 {
     public class Arrays
     {
