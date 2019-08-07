@@ -65,5 +65,30 @@ namespace PiwotToolsLib.Math
             return rng.Next() * (exclusiveMax - inclusiveMin) + inclusiveMin;
         }
         #endregion
+
+        /// <summary>Returns randomly generated double in normal distribution.</summary>
+        public static double NormalDistribution()
+        {
+            double d1, d2;
+            double epsilon = double.MinValue;
+            do
+            {
+                d1 = 1.0 - rng.NextDouble();
+                d2 = 1.0 - rng.NextDouble();
+            }
+            while (d1 <= epsilon);
+            
+            double stdNorm = System.Math.Sqrt(-2.0 * System.Math.Log(d1)) * System.Math.Cos(2.0 * System.Math.PI * d2);
+            return stdNorm;
+        }
+
+        /// <summary>Returns randomly generated double in normal distribution.</summary>
+        /// <param name="mean">The mean of the distribution.</param>
+        /// <param name="standardDeviation">The standard deviation of the distribution.</param>
+        public static double NormalDistribution(double mean, double standardDeviation)
+        {
+            return NormalDistribution() * standardDeviation + mean;
+        }
+
     }
 }

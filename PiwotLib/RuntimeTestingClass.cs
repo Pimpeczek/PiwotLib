@@ -8,13 +8,10 @@ namespace PiwotToolsLib
 {
     class RuntimeTestingClass
     {
-        /*static void Main(string[] args)
+        static void Main(string[] args)
         {
-            int xd = Math.Arit.TakeLesser(1, 2);
-            //Data.Stringer.GetFilledString(20, (x, c) => '#');
-            Console.WriteLine(Data.Stringer.GetFilledString(20, (x, c)=>c==0?'A':(char)(c+x)));
-            Console.ReadKey(true);
+
         }
-        */
+        
     }
 }
