@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PiwotLib.Math
 {
-    class Arit
+    public class Arit
     {
         #region Clamps
         ///<summary>Returns value clamped between 0 and inclusiveMax.

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PiwotLib.Math
 {
-    class Int3: IComparable
+    public class Int3: IComparable
     {
         protected int x, y, z;
         public int X { get; protected set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PiwotLib
 {
-    class Program
+    /*class Program
     {
         static void Main(string[] args)
         {
@@ -15,5 +15,5 @@ namespace PiwotLib
             Console.WriteLine(Data.Stringer.GetFilledString(20, (x, c)=>c==0?'A':(char)(c+x)));
             Console.ReadKey(true);
         }
-    }
+    }*/
 }

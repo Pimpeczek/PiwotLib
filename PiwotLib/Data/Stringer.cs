@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PiwotLib.Data
 {
-    enum TextAlignment { Left, Middle, Right }
-    class Stringer
+    public enum TextAlignment { Left, Middle, Right }
+    public class Stringer
     {
 
         /// <summary>Counts occurences of a given char in a given string.</summary>

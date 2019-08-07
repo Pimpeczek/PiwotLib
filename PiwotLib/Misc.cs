@@ -64,11 +64,6 @@ namespace PiwotLib
         }
     }
 
-    class Stringer
-    {
-        
-    }
-
     
 
     

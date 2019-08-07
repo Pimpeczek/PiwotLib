@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PiwotLib.Math
 {
-    class Rand
+    public class Rand
     {
         static Random rng = new Random();
 

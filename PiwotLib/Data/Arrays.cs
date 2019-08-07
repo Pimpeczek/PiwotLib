@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PiwotLib.Data
 {
-    class Arrays
+    public class Arrays
     {
         #region Counting
         /// <summary>Counts how many elements of a given bool array are true.</summary>
