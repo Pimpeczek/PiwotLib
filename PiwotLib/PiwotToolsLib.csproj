@@ -47,13 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Console\Boxes.cs" />
     <Compile Include="Data\Arrays.cs" />
     <Compile Include="Data\Stringer.cs" />
     <Compile Include="PMath\Arit.cs" />
     <Compile Include="PMath\Int2.cs" />
     <Compile Include="PMath\Int3.cs" />
     <Compile Include="PMath\Rand.cs" />
-    <Compile Include="Misc.cs" />
+    <Compile Include="Miscc.cs" />
     <Compile Include="RuntimeTestingClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
