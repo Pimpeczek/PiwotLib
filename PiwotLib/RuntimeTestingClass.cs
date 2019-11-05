@@ -8,11 +8,11 @@ namespace PiwotToolsLib
 {
     class RuntimeTestingClass
     {
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
 
             Console.ReadKey(true);
-        }
+        }*/
         
     }
 }

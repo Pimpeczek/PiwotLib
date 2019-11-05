@@ -83,7 +83,7 @@ namespace PiwotToolsLib.Data
         public static void PrintArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
-                Console.WriteLine(array[i]);
+                System.Console.WriteLine(array[i]);
         }
 
         /// <summary>Performs a given action on each element of a given array.</summary>
@@ -280,6 +280,18 @@ namespace PiwotToolsLib.Data
         public static void SubArray<T>(ref T[] array, Func<T, int, bool> condition)
         {
             array = array.Where(condition).ToArray();
+        }
+
+        /// <summary>Resizes array to a given lenght using SubArray or ExpandArray method appropriately.</summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="array">The base array.</param>
+        /// <param name="length">Lenght of the resized array.</param>
+        public static void ResizeArray<T>(ref T[] array, int length)
+        {
+            if (length < array.Length)
+                SubArray(ref array, 0, length);
+            if (length > array.Length)
+                ExpandArray(ref array, length);
         }
 
         /// <summary>Returns a subarray starting at from-th position and having 'lenght' elements.</summary>

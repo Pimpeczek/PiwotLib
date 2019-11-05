@@ -78,7 +78,7 @@ namespace PiwotToolsLib.PMath
             }
             while (d1 <= epsilon);
             
-            double stdNorm = System.Math.Sqrt(-2.0 * System.Math.Log(d1)) * System.Math.Cos(2.0 * System.Math.PI * d2);
+            double stdNorm = Math.Sqrt(-2.0 * Math.Log(d1)) * Math.Cos(2.0 * Math.PI * d2);
             return stdNorm;
         }
 

@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\PiwotToolsLib.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -50,6 +51,7 @@
     <Compile Include="Console\Boxes.cs" />
     <Compile Include="Data\Arrays.cs" />
     <Compile Include="Data\Stringer.cs" />
+    <Compile Include="PGraphics\Bitmaper.cs" />
     <Compile Include="PMath\Arit.cs" />
     <Compile Include="PMath\Int2.cs" />
     <Compile Include="PMath\Int3.cs" />
