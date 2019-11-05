@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace PiwotToolsLib.PGraphics
+namespace PiwotToolsLib.PMath
 {
-    public static class Bitmaper
+    static class Bitmaper
     {
         /// <summary>
         /// Returns a part of oryginal bitmap specified by rect.

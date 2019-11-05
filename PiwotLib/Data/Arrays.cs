@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Arrays
     {
         #region Counting
@@ -230,7 +233,7 @@ namespace PiwotToolsLib.Data
         /// <typeparam name="T">Type of the array.</typeparam>
         /// <param name="array">The array to be expanded.</param>
         /// <param name="length">The length of the new array.</param>
-        /// <param name="value">The value assigned to the new fields.</param>
+        /// <param name="func">The function used to assign values.</param>
         public static void ExpandArray<T>(ref T[] array, int length, Func<int, T> func)
         {
             if (length < array.Length)
