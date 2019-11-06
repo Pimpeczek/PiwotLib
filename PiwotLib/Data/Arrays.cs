@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Data
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Arrays
     {
         #region Counting
@@ -230,7 +233,7 @@ namespace PiwotToolsLib.Data
         /// <typeparam name="T">Type of the array.</typeparam>
         /// <param name="array">The array to be expanded.</param>
         /// <param name="length">The length of the new array.</param>
-        /// <param name="value">The value assigned to the new fields.</param>
+        /// <param name="func">The function used to assign values.</param>
         public static void ExpandArray<T>(ref T[] array, int length, Func<int, T> func)
         {
             if (length < array.Length)
@@ -280,6 +283,18 @@ namespace PiwotToolsLib.Data
         public static void SubArray<T>(ref T[] array, Func<T, int, bool> condition)
         {
             array = array.Where(condition).ToArray();
+        }
+
+        /// <summary>Resizes array to a given lenght using SubArray or ExpandArray method appropriately.</summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="array">The base array.</param>
+        /// <param name="length">Lenght of the resized array.</param>
+        public static void ResizeArray<T>(ref T[] array, int length)
+        {
+            if (length < array.Length)
+                SubArray(ref array, 0, length);
+            if (length > array.Length)
+                ExpandArray(ref array, length);
         }
 
         /// <summary>Returns a subarray starting at from-th position and having 'lenght' elements.</summary>
