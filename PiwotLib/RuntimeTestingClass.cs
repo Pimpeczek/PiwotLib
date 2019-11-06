@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace PiwotToolsLib
 {
     class RuntimeTestingClass
@@ -11,8 +11,9 @@ namespace PiwotToolsLib
         static void Main(string[] args)
         {
 
-            Console.ReadKey(true);
+            //Console.ReadKey(true);
         }
         
     }
 }
+*/

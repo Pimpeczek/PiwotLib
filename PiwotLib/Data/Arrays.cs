@@ -83,7 +83,7 @@ namespace PiwotToolsLib.Data
         public static void PrintArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
-                Console.WriteLine(array[i]);
+                System.Console.WriteLine(array[i]);
         }
 
         /// <summary>Performs a given action on each element of a given array.</summary>
