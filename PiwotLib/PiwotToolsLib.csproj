@@ -54,7 +54,7 @@
     <Compile Include="Data\Loops.cs" />
     <Compile Include="Data\Stringer.cs" />
     <Compile Include="PGraphics\Bitmaper.cs" />
-    <Compile Include="PGraphics\PColor.cs" />
+    <Compile Include="PGraphics\Coloring.cs" />
     <Compile Include="PMath\Arit.cs" />
     <Compile Include="PMath\Bitmaper.cs" />
     <Compile Include="PMath\Int2.cs" />

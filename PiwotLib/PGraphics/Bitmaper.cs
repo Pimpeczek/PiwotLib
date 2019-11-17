@@ -50,5 +50,17 @@ namespace PiwotToolsLib.PGraphics
 
             return result;
         }
+
+        public static Bitmap CutColorBits(Bitmap b, Coloring.ColorEncoding colorEncoding)
+        {
+            for (int y = 0; y < b.Height; y++)
+            {
+                for (int x = 0; x < b.Width; x++)
+                {
+                    b.SetPixel(x, y, Coloring.CutBits(b.GetPixel(x, y), colorEncoding));
+                }
+            }
+            return b;
+        }
     }
 }
