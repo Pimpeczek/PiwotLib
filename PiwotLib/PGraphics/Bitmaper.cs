@@ -72,6 +72,38 @@ namespace PiwotToolsLib.PGraphics
             }
 
         }
+        /// <summary>
+        /// Returns a new resized instance of the oryginal bitmap, that fits given size, and fills empty space with a given color.
+        /// </summary>
+        /// <param name="bitmap">The oryginal bitmap.</param>
+        /// <param name="width">Given height.</param>
+        /// <param name="height">Given width.</param>
+        /// <param name="fillColor"></param>
+        /// <returns></returns>
+        public static Bitmap ResizeToFit(Bitmap bitmap, int width, int height, Color fillColor)
+        {
+            float dRatio = (float)width / (float)height;
+            float bRatio = (float)bitmap.Width / (float)bitmap.Height;
+            Bitmap nb = new Bitmap(width, height);
+            
+            if (dRatio < bRatio)
+            {
+                using (Graphics g = Graphics.FromImage(nb))
+                {
+                    g.DrawImage(new Bitmap(bitmap, width, (int)(width / bRatio)), 0, 0);
+                }
+                return nb;
+            }
+            else
+            {
+                using (Graphics g = Graphics.FromImage(nb))
+                {
+                    g.DrawImage(new Bitmap(bitmap, (int)(height * bRatio), height), 0, 0);
+                }
+                return nb;
+            }
+
+        }
 
         public static Bitmap CutColorBits(Bitmap b, Coloring.ColorEncoding colorEncoding)
         {
