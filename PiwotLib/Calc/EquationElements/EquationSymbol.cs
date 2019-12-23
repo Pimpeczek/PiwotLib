@@ -6,18 +6,41 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Calc.EquationElements
 {
-    public class EquationSymbol : EquationElement
+    /// <summary>
+    /// Represents a base for every Equation Operator and Function.
+    /// </summary>
+    public abstract class EquationSymbol : EquationElement
     {
+        /// <summary>
+        /// The character used to mark beggining and end of the EquationSymbol in the string representation.
+        /// <para>Ths value is equal to 27, which is a representation for Esc key.</para>
+        /// </summary>
         public static readonly char spacingChar = (char)27;
+
+        /// <summary>
+        /// The string representation of this EquationSymbol.
+        /// </summary>
         public string Symbol { get; protected set; }
+
+        /// <summary>
+        /// The string representation of this EquationSymbol with spacingChar on beggining and end.
+        /// </summary>
         public string SpacedSymbol { get; protected set; }
 
+        /// <summary>
+        /// Creates new Equation symbol.
+        /// </summary>
+        /// <param name="symbol"></param>
         public EquationSymbol(string symbol)
         {
             Symbol = symbol;
             SpacedSymbol = $"{spacingChar}{symbol}{spacingChar}";
         }
 
+        /// <summary>
+        /// Returns the string representation.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return Symbol;

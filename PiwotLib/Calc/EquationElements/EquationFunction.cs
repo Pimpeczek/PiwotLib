@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PiwotToolsLib.Calc.EquationElements
 {
     /// <summary>
-    /// A class representing function in equation for Piwot RPNCalculator.
+    /// A class representing function in Piwot Equation.
     /// </summary>
     public class EquationFunction : OperatorBase
     {

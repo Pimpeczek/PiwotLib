@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Calc.EquationElements
 {
-    public class EquationElement
+    /// <summary>
+    /// The base for every equation element.
+    /// </summary>
+    public abstract class EquationElement
     {
         
     }

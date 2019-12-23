@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Calc.EquationElements
 {
+    /// <summary>
+    /// Represents a operand with variable value.
+    /// </summary>
     public class EquationVariable : EquationOperand
     {
         /// <summary>
@@ -21,6 +24,11 @@ namespace PiwotToolsLib.Calc.EquationElements
         {
             Name = name;
         }
+
+        /// <summary>
+        /// Returns the string representation.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{Name}:{Value}";
