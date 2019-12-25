@@ -12,11 +12,16 @@ namespace PiwotToolsLib.Calc.EquationElements
     public abstract class EquationSymbol : EquationElement
     {
         /// <summary>
-        /// The character used to mark beggining and end of the EquationSymbol in the string representation.
+        /// The character used to mark beggining of the EquationSymbol in the string representation.
         /// <para>Ths value is equal to 27, which is a representation for Esc key.</para>
         /// </summary>
-        public static readonly char spacingChar = (char)27;
+        public static readonly char begSpacingChar = (char)27;
 
+        /// <summary>
+        /// The character used to mark end of the EquationSymbol in the string representation.
+        /// <para>Ths value is equal to 27, which is a representation for Esc key.</para>
+        /// </summary>
+        public static readonly char endSpacingChar = (char)8;
         /// <summary>
         /// The string representation of this EquationSymbol.
         /// </summary>
@@ -33,8 +38,8 @@ namespace PiwotToolsLib.Calc.EquationElements
         /// <param name="symbol"></param>
         public EquationSymbol(string symbol)
         {
-            Symbol = symbol;
-            SpacedSymbol = $"{spacingChar}{symbol}{spacingChar}";
+            Symbol =  System.Text.RegularExpressions.Regex.Replace(symbol, @"[0-9]+", "");
+            SpacedSymbol = $"{begSpacingChar}{Symbol}{endSpacingChar}";
         }
 
         /// <summary>

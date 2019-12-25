@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calc\Equation.cs" />
+    <Compile Include="Calc\EquationElements\EquationConstant.cs" />
     <Compile Include="Calc\EquationElements\EquationElement.cs" />
     <Compile Include="Calc\EquationElements\EquationFunction.cs" />
+    <Compile Include="Calc\EquationElements\IEquationValue.cs" />
     <Compile Include="Calc\EquationElements\LeftBracketSymbol.cs" />
     <Compile Include="Calc\EquationElements\EquationOperand.cs" />
     <Compile Include="Calc\EquationElements\OperatorBase.cs" />
@@ -60,7 +62,7 @@
     <Compile Include="Calc\EquationElements\EquationVariable.cs" />
     <Compile Include="Calc\Exceptions\InvalidTokenSymbolException.cs" />
     <Compile Include="Calc\Exceptions\WrongNumberOfArgumentsException.cs" />
-    <Compile Include="Calc\RPNCalculator.cs" />
+    <Compile Include="Calc\CalculatorBase.cs" />
     <Compile Include="Console\Bars.cs" />
     <Compile Include="Console\Boxes.cs" />
     <Compile Include="Data\Arrays.cs" />

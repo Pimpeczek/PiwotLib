@@ -9,7 +9,7 @@ namespace PiwotToolsLib.Calc.EquationElements
     /// <summary>
     /// Represents operand in Piwot Equation.
     /// </summary>
-    public class EquationOperand: EquationElement
+    public class EquationOperand: EquationElement, IEquationValue
     {
         /// <summary>
         /// The value of this operand.

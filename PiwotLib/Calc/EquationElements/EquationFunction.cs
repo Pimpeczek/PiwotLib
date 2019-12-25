@@ -42,7 +42,7 @@ namespace PiwotToolsLib.Calc.EquationElements
             if (Func == null)
                 throw new ArgumentNullException("Func");
             if (args.Length != ArgumentCount)
-                throw new Exceptions.WrongNumberOfArgumentsException();
+                throw new Exceptions.WrongNumberOfArgumentsException(Symbol);
             return Func.Invoke(args);
         }
     }

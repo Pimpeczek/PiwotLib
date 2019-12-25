@@ -10,13 +10,14 @@ namespace PiwotToolsLib
     {
         static void Main(string[] args)
         {
-            
-            Calc.Equation eq = new Calc.Equation("min(-2, -1)");
-            System.Console.WriteLine(eq.Calculate());
-            //System.Console.WriteLine(eq.Integrate("var", 0, 2, 0.0001));
-
-            //for (int i = 0; i < Calc.RPNCalculator.operators.Count; i++)
-            //System.Console.WriteLine(Calc.RPNCalculator.operators[i].Symbol);
+            while (true)
+            {
+                System.Console.Write("Wpisz no działanie: ");
+                Calc.Equation eq = new Calc.Equation(System.Console.ReadLine());
+                System.Console.WriteLine( eq.Calculate());
+                //System.Console.WriteLine("Rect: " + eq.Integrate("var", 0, 1, 0.0001));
+                //System.Console.WriteLine("Trap: " + eq.Integrate("var", 0, 1, 0.0001, Calc.Equation.IntegrationMode.Trapezoid));
+            }
             System.Console.ReadKey(true);
         }
         

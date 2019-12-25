@@ -13,16 +13,16 @@ namespace PiwotToolsLib.Calc
     public static class CalculatorBase
     {
         /// <summary>
-        /// The list of operators.
+        /// The list of symbols.
         /// </summary>
-        public static List<EquationSymbol> Operators { get; private set; }
+        public static List<EquationSymbol> Symbols { get; private set; }
 
         /// <summary>
-        /// Creates the list of operators.
+        /// Creates the list of symbols.
         /// </summary>
         static CalculatorBase()
         {
-            Operators = new List<EquationSymbol>
+            Symbols = new List<EquationSymbol>
             {
                 new LeftBracketSymbol(),
                 new RightBracketSymbol(),
@@ -46,9 +46,14 @@ namespace PiwotToolsLib.Calc
                 new EquationFunction("sqrt", 3, 1, (args) => Math.Sqrt(args[0])),
                 new EquationFunction("max", 3, 2, (args) => Math.Max(args[0], args[1])),
                 new EquationFunction("min", 3, 2, (args) => Math.Min(args[0], args[1])),
-                new EquationFunction("clamp", 3, 3, (args) => PMath.Arit.Clamp(args[0], args[1], args[2]))
+                new EquationFunction("clamp", 3, 3, (args) => PMath.Arit.Clamp(args[0], args[1], args[2])),
+
+                new EquationConstant(Math.PI, "PI"),
+                new EquationConstant(Math.E, "E"),
+                new EquationConstant(2137, "PA_+P")
             };
-            SortOperators();
+
+            SortSymbols();
         }
 
         /// <summary>
@@ -67,12 +72,13 @@ namespace PiwotToolsLib.Calc
         /// </summary>
         /// <param name="symbol">Operator unique symbol.</param>
         /// <returns></returns>
-        public static OperatorBase GetOperatorBySymbol(string symbol)
+        public static EquationSymbol GetEquationSymbol(string symbol)
         {
-            for(int i = 0; i < Operators.Count; i++)
+            for(int i = 0; i < Symbols.Count; i++)
             {
-                if (Operators[i].Symbol == symbol)
-                    return (OperatorBase) Operators[i];
+                
+                if (Symbols[i].Symbol == symbol)
+                    return (EquationSymbol) Symbols[i];
             }
             return null;
         }
@@ -84,14 +90,14 @@ namespace PiwotToolsLib.Calc
         /// <returns></returns>
         public static bool AddOperator(OperatorBase newOperator)
         {
-            for(int i = 0; i < Operators.Count; i++)
+            for(int i = 0; i < Symbols.Count; i++)
             {
-                if (newOperator.Symbol == Operators[i].Symbol)
+                if (newOperator.Symbol == Symbols[i].Symbol)
                     return false;
             }
 
-            Operators.Add(newOperator);
-            SortOperators();
+            Symbols.Add(newOperator);
+            SortSymbols();
             return true;
         }
 
@@ -102,11 +108,11 @@ namespace PiwotToolsLib.Calc
         /// <returns></returns>
         public static bool RemoveOperator(string symbol)
         {
-            for (int i = 0; i < Operators.Count; i++)
+            for (int i = 0; i < Symbols.Count; i++)
             {
-                if (symbol == Operators[i].Symbol)
+                if (symbol == Symbols[i].Symbol)
                 {
-                    Operators.RemoveAt(i);
+                    Symbols.RemoveAt(i);
                     return true;
                 }
             }
@@ -123,12 +129,12 @@ namespace PiwotToolsLib.Calc
         {
             if (newOperator == null)
                 return false;
-            for (int i = 0; i < Operators.Count; i++)
+            for (int i = 0; i < Symbols.Count; i++)
             {
-                if (oldOperatorSymbol == Operators[i].Symbol)
+                if (oldOperatorSymbol == Symbols[i].Symbol)
                 {
-                    Operators[i] = newOperator;
-                    SortOperators();
+                    Symbols[i] = newOperator;
+                    SortSymbols();
                     return true;
                 }
             }
@@ -138,9 +144,9 @@ namespace PiwotToolsLib.Calc
         /// <summary>
         /// Sorts operators by symbol lenght.
         /// </summary>
-        static void SortOperators()
+        static void SortSymbols()
         {
-            Operators.Sort((x, y) => y.Symbol.Length.CompareTo(x.Symbol.Length));
+            Symbols.Sort((x, y) => y.Symbol.Length.CompareTo(x.Symbol.Length));
         }
     }
 }

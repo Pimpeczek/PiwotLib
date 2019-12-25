@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using PiwotToolsLib.Calc.EquationElements;
 
 namespace PiwotToolsLib.Calc
@@ -12,6 +8,23 @@ namespace PiwotToolsLib.Calc
     /// </summary>
     public class Equation
     {
+        static readonly string minusSymbol = $"{(char)8}{(char)27}{(char)27}{(char)8}"; 
+
+        /// <summary>
+        /// The mode of integration as the sum of geometric shapes.
+        /// </summary>
+        public enum IntegrationMode
+        {
+            /// <summary>
+            /// Sum of areas of rectangles.
+            /// </summary>
+            Rectangle,
+            /// <summary>
+            /// Sum of areas of trapezoids.
+            /// </summary>
+            Trapezoid
+        }
+
         /// <summary>
         /// List of all detected variables.
         /// </summary>
@@ -29,7 +42,7 @@ namespace PiwotToolsLib.Calc
         public Equation(string equationString)
         {
             variables = new List<EquationVariable>();
-            CreateFromString(equationString);
+            Tokenize(equationString);
         }
 
         /// <summary>
@@ -80,7 +93,7 @@ namespace PiwotToolsLib.Calc
             return false;
         }
 
-        void CreateFromString(string equationString)
+        void Tokenize(string equationString)
         {
             
             string[] splittedInput = GetEquationAsTokens(equationString);
@@ -91,14 +104,14 @@ namespace PiwotToolsLib.Calc
             {
                 if (splittedInput[i].Length != 0)
                 {
-
+                    
                     if ((tempElement = InterpretToken(splittedInput[i])) == null)
                     {
                         throw new Exceptions.InvalidTokenSymbolException(splittedInput[i]);
                     }
                     else
                     {
-                        if (tempElement is EquationOperand)
+                        if (tempElement is EquationOperand || tempElement is EquationConstant)
                         {
                             if (tempElement is EquationVariable)
                                 AddVariable((EquationVariable)tempElement);
@@ -162,13 +175,13 @@ namespace PiwotToolsLib.Calc
         /// <returns></returns>
         public double Calculate()
         {
-            Stack<EquationOperand> operandHeap = new Stack<EquationOperand>();
+            Stack<IEquationValue> operandHeap = new Stack<IEquationValue>();
             EquationFunction equationFunction;
             for (int i = 0; i < equation.Length; i++)
             {
-                if(equation[i] is EquationOperand)
+                if(equation[i] is IEquationValue)
                 {
-                    operandHeap.Push((EquationOperand)equation[i]);
+                    operandHeap.Push((IEquationValue)equation[i]);
                 }
                 else
                 {
@@ -201,18 +214,44 @@ namespace PiwotToolsLib.Calc
         /// <returns></returns>
         public double Integrate(string variableName, double lowerBound, double upperBound, double step)
         {
+            return Integrate(variableName, lowerBound, upperBound, step, IntegrationMode.Rectangle);
+        }
+
+        /// <summary>
+        /// Calculates aproximation of a integral over a given variable on a given interval.
+        /// </summary>
+        /// <param name="variableName">Variable to integrate over.</param>
+        /// <param name="lowerBound">Lower inclusive boundry.</param>
+        /// <param name="upperBound">Upper exclusive boundry.</param>
+        /// <param name="step">The step of the integration.</param>
+        /// <param name="mode">The mode of integration.</param>
+        /// <returns></returns>
+        public double Integrate(string variableName, double lowerBound, double upperBound, double step, IntegrationMode mode)
+        {
             if (lowerBound > upperBound)
                 upperBound = lowerBound;
             double result = 0;
             EquationVariable variable = GetVariable(variableName);
             variable.Value = lowerBound;
-            while (variable.Value < upperBound)
+            if (mode == IntegrationMode.Rectangle)
             {
-                result += Calculate() * step;
-                variable.Value += step;
+                while (variable.Value < upperBound)
+                {
+                    result += Calculate() * step;
+                    variable.Value += step;
+                }
+            }
+            else
+            {
+                double val;
+                while (variable.Value < upperBound)
+                {
+                    val = Calculate();
+                    variable.Value += step;
+                    result += (Calculate() + val) / 2 * step;
+                }
             }
             return result;
-
         }
 
         static bool ShouldPopOperatorToQueue(EquationElement to, EquationElement so)
@@ -236,15 +275,54 @@ namespace PiwotToolsLib.Calc
         {
 
 
-            equation = System.Text.RegularExpressions.Regex.Replace(equation, @"-(\d+)", "THENUMBERMINUS$1");
-            for (int i = 0; i < CalculatorBase.Operators.Count; i++)
+            equation = System.Text.RegularExpressions.Regex.Replace(equation, @"-(\d+)", minusSymbol+"$1");
+            int t = 0;
+            string tSymbol;
+            string empty;
+            List<(int, string)> tokens = new List<(int, string)>();
+            for (int i = 0; i < CalculatorBase.Symbols.Count; i++)
             {
-                equation = equation.Replace(CalculatorBase.Operators[i].Symbol, CalculatorBase.Operators[i].SpacedSymbol);
+
+                
+                tSymbol = CalculatorBase.Symbols[i].Symbol;
+                empty = Data.Stringer.GetFilledString(tSymbol.Length, ' ');
+
+                //System.Console.WriteLine(tSymbol);
+
+                while ((t = equation.IndexOf(tSymbol)) >= 0)
+                {
+                    tokens.Add((t, tSymbol));
+                    equation = equation.Remove(t, tSymbol.Length);
+                    equation = equation.Insert(t, empty);
+                }
+                //System.Console.WriteLine(equation);
             }
-            equation = equation.Replace("THENUMBERMINUS", "-");
-            equation = equation.Replace(',', EquationSymbol.spacingChar);
-            equation = equation.Replace(" ", "");
-            return equation.Split(EquationSymbol.spacingChar);
+            //System.Console.WriteLine(equation);
+            equation = equation.Replace(minusSymbol, "-");
+            equation = equation.Replace(';', ' ');
+            //System.Console.WriteLine(equation);
+            for (int i = 0; i < equation.Length; i++)
+            {
+                //System.Console.WriteLine("XD "+equation[i] + " " + ((int)equation[i]));
+            }
+            System.Text.RegularExpressions.MatchCollection mc = 
+                System.Text.RegularExpressions.Regex.Matches($" {equation} ", @" (-*[0-9]+)");
+            for(int i = 0; i < mc.Count; i++)
+            {
+                //System.Console.WriteLine(mc[i].Value);
+                tokens.Add((mc[i].Index, mc[i].Value));
+            }
+            tokens.Sort((a, b) => a.Item1.CompareTo(b.Item1));
+            string[] retArr = new string[tokens.Count];
+            for (int i = 0; i < tokens.Count; i++)
+            {
+                retArr[i] = tokens[i].Item2;
+                //System.Console.WriteLine(tokens[i]);
+            }
+
+            
+            
+            return retArr;
         }
 
         static EquationElement InterpretToken(string token)
@@ -253,14 +331,17 @@ namespace PiwotToolsLib.Calc
                 return new LeftBracketSymbol();
             if (token == ")")
                 return new RightBracketSymbol();
-            OperatorBase o;
+            EquationSymbol o;
             if (token.StartsWith("var"))
             {
                 return new EquationVariable(token);
             }
 
-            if ((o = CalculatorBase.GetOperatorBySymbol(token)) != null)
+            if ((o = CalculatorBase.GetEquationSymbol(token)) != null)
+            {
                 return o;
+            }
+
             if (double.TryParse(token, out double val))
                 return new EquationOperand(val);
             return null;
