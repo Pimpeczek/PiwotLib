@@ -71,7 +71,6 @@
     <Compile Include="PGraphics\Bitmaper.cs" />
     <Compile Include="PGraphics\Coloring.cs" />
     <Compile Include="PMath\Arit.cs" />
-    <Compile Include="PMath\Bitmaper.cs" />
     <Compile Include="PMath\Int2.cs" />
     <Compile Include="PMath\Int3.cs" />
     <Compile Include="PMath\Rand.cs" />

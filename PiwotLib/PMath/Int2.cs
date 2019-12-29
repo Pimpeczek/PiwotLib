@@ -9,7 +9,19 @@ namespace PiwotToolsLib.PMath
     /// <summary>Class storing two integers. All operations are pointwise.</summary>
     public class Int2: IComparable
     {
-        protected int x, y;
+        #region Fields
+        /// <summary>
+        /// The x value;
+        /// </summary>
+        protected int x;
+        /// <summary>
+        /// The y value;
+        /// </summary>
+        protected int y;
+
+        /// <summary>
+        /// The x value.
+        /// </summary>
         public int X
         {
             get
@@ -21,6 +33,9 @@ namespace PiwotToolsLib.PMath
                 x = value;
             }
         }
+        /// <summary>
+        /// The y value.
+        /// </summary>
         public int Y
         {
             get
@@ -32,34 +47,68 @@ namespace PiwotToolsLib.PMath
                 y = value;
             }
         }
+        #endregion
 
         #region Static values
+        /// <summary>
+        /// (0,0)
+        /// </summary>
         public static Int2 Zero { get; } = new Int2(0, 0);
+        /// <summary>
+        /// (1,1)
+        /// </summary>
         public static Int2 One { get; } = new Int2(1, 1);
+        /// <summary>
+        /// (0,1)
+        /// </summary>
         public static Int2 Up { get; } = new Int2(0, 1);
+        /// <summary>
+        /// (1,0)
+        /// </summary>
         public static Int2 Right { get; } = new Int2(1, 0);
+        /// <summary>
+        /// (0,-1)
+        /// </summary>
         public static Int2 Down { get; } = new Int2(0, -1);
+        /// <summary>
+        /// (-1,0)
+        /// </summary>
         public static Int2 Left { get; } = new Int2(-1, 0);
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// 
+        /// </summary>
         public Int2()
         {
             x = 0;
             y = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xy"></param>
         public Int2(int xy)
         {
             x = xy;
             y = xy;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public Int2(int x, int y)
         {
             this.x = x;
             this.y = y;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i2"></param>
         public Int2(Int2 i2)
         {
             x = i2.x;
@@ -286,46 +335,133 @@ namespace PiwotToolsLib.PMath
         #endregion
 
         #region Operators
+        /// <summary>
+        /// The pointwise addition operation between two Int2 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int2 operator +(Int2 i1, Int2 i2) { return new Int2(i1.x + i2.x, i1.y + i2.y); }
+
+        /// <summary>
+        /// The addition operation between a Int2 object and a integer. Both X and Y are incremented by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int2 operator +(Int2 i1, int x) { return new Int2(i1.x + x, i1.y + x); }
 
+        /// <summary>
+        /// The pointwise subtraction operation between two Int2 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int2 operator -(Int2 i1, Int2 i2) { return new Int2(i1.x - i2.x, i1.y - i2.y); }
+
+        /// <summary>
+        /// The subtraction operation between a Int2 object and a integer. Both X and Y are decremented by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int2 operator -(Int2 i1, int x) { return new Int2(i1.x - x, i1.y - x); }
 
+        /// <summary>
+        /// The pointwise multiplication operation between two Int2 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int2 operator *(Int2 i1, Int2 i2) { return new Int2(i1.x * i2.x, i1.y * i2.y); }
+
+        /// <summary>
+        /// The multiplication operation between a Int2 object and a integer. Both X and Y are multiplied by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int2 operator *(Int2 i1, int x) { return new Int2(i1.x * x, i1.y * x); }
 
+        /// <summary>
+        /// The pointwise division operation between two Int2 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int2 operator /(Int2 i1, Int2 i2) { return new Int2(i1.x / i2.x, i1.y / i2.y); }
+        /// <summary>
+        /// The division operation between a Int2 object and a integer. Both X and Y are divided by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int2 operator /(Int2 i1, int x) { return new Int2(i1.x / x, i1.y / x); }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator ==(Int2 i1, Int2 i2)
         {
-            if ((object)i2 == null) return (object)i1 == null; if ((object)i1 == null) return (object)i2 == null;
+            if (i2 is null) return i1 is null; if (i1 is null) return i2 is null;
             if (i1.x == i2.x && i1.y == i2.y) return true; return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator !=(Int2 i1, Int2 i2)
         {
-            if ((object)i2 == null) return (object)i1 != null; if ((object)i1 == null) return (object)i2 != null;
+            if (i2 is null) return !(i1 is null); if (i1 is null) return !(i2 is null);
             if (i1.x == i2.x && i1.y == i2.y) return false; return true;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator >=(Int2 i1, Int2 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x >= i2.x && i1.y >= i2.y) return true; return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator <=(Int2 i1, Int2 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x <= i2.x && i1.y <= i2.y) return true; return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator >(Int2 i1, Int2 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x > i2.x && i1.y > i2.y) return true; return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator <(Int2 i1, Int2 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
@@ -333,7 +469,11 @@ namespace PiwotToolsLib.PMath
             if (i1.x < i2.x && i1.y < i2.y) return true; return false;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -343,21 +483,36 @@ namespace PiwotToolsLib.PMath
         }
         #endregion
 
+        #region Misc
+        /// <summary>
+        /// Creates a hash code of this object.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked
             {
                 var result = 0;
                 result = (result * 397) ^ x;
-                result = (result * 397) ^ y;
+                result += (result * 397) ^ y;
                 return result;
             }
         }
+
+        /// <summary>
+        /// Returns a string representation of this Int2 object.
+        /// </summary>
+        /// <returns></returns>
         override public string ToString()
         {
             return x + ", " + y;
         }
 
+        /// <summary>
+        /// Copares two Int2 objects.
+        /// </summary>
+        /// <param name="obj">The other object</param>
+        /// <returns></returns>
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;
@@ -371,5 +526,6 @@ namespace PiwotToolsLib.PMath
             else
                 throw new ArgumentException("Object is not an Int2");
         }
+        #endregion
     }
 }

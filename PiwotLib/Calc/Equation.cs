@@ -34,7 +34,7 @@ namespace PiwotToolsLib.Calc
 
         /// <summary>
         /// Creates a new instance of Piwot Equation.
-        /// 
+        /// <para>Separation of every operator and operand by spaces is not necesary 4 but strongly advised.</para>
         /// </summary>
         /// <param name="equationString">The equation represented on string.
         ///     <para>Minuses '-' are interpreted as operators '2 - 1' unless there is no space between the sign and a digit '2 + -1'.</para>
@@ -305,8 +305,20 @@ namespace PiwotToolsLib.Calc
             {
                 //System.Console.WriteLine("XD "+equation[i] + " " + ((int)equation[i]));
             }
-            System.Text.RegularExpressions.MatchCollection mc = 
-                System.Text.RegularExpressions.Regex.Matches($" {equation} ", @" (-*[0-9]+)");
+            //System.Console.WriteLine(CalculatorBase.NumberDecimalSeparator);
+
+            System.Text.RegularExpressions.MatchCollection mc =
+                System.Text.RegularExpressions.Regex.Matches($" {equation} ", @" (var_*[\p{L}]*) ");
+            for (int i = 0; i < mc.Count; i++)
+            {
+                //equation = equation.Remove(mc[i].Index, mc[i].Value.Length);
+                //equation = equation.Insert(mc[i].Index, Data.Stringer.GetFilledString(mc[i].Value.Length, ' '));
+                //System.Console.WriteLine(mc[i].Value);
+                tokens.Add((mc[i].Index, mc[i].Value.Replace(" ", "")));
+            }
+
+
+            mc = System.Text.RegularExpressions.Regex.Matches($" {equation} ", @" (-*[0-9"+System.Text.RegularExpressions.Regex.Escape(CalculatorBase.NumberDecimalSeparator)+"]+)");
             for(int i = 0; i < mc.Count; i++)
             {
                 //System.Console.WriteLine(mc[i].Value);
@@ -317,7 +329,7 @@ namespace PiwotToolsLib.Calc
             for (int i = 0; i < tokens.Count; i++)
             {
                 retArr[i] = tokens[i].Item2;
-                //System.Console.WriteLine(tokens[i]);
+                System.Console.WriteLine(tokens[i]);
             }
 
             

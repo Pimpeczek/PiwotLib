@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PiwotToolsLib.Calc.EquationElements;
+
+//########################################
+//
+//     WE NEED TO DO THE EXCEPTIONS!
+//
+//########################################
 
 namespace PiwotToolsLib.Calc
 {
@@ -18,10 +21,16 @@ namespace PiwotToolsLib.Calc
         public static List<EquationSymbol> Symbols { get; private set; }
 
         /// <summary>
+        ///  
+        /// </summary>
+        public static string NumberDecimalSeparator { get; private set; }
+
+        /// <summary>
         /// Creates the list of symbols.
         /// </summary>
         static CalculatorBase()
         {
+            NumberDecimalSeparator = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
             Symbols = new List<EquationSymbol>
             {
                 new LeftBracketSymbol(),

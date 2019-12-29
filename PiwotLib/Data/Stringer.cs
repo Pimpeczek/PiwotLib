@@ -6,7 +6,28 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.Data
 {
-    public enum TextAlignment { Left, Middle, Right }
+    /// <summary>
+    /// Distinguishes how the text is alligned.
+    /// </summary>
+    public enum TextAlignment
+    {
+        /// <summary>
+        /// The text is alligned to the left.
+        /// </summary>
+        Left,
+        /// <summary>
+        /// The text is alligned to the middle.
+        /// </summary>
+        Middle,
+        /// <summary>
+        /// The text is alligned to the right.
+        /// </summary>
+        Right
+    }
+
+    /// <summary>
+    /// Piwot helper class to manage strings.
+    /// </summary>
     public class Stringer
     {
 

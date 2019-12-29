@@ -442,7 +442,7 @@ namespace PiwotToolsLib.Data
         /// <summary>Rearanges fields of a given array creating a random permutation.</summary>
         /// <typeparam name="T">Type of the array.</typeparam>
         /// <param name="array">The base array.</param>
-        public static void RandomizrArray<T>(T[] array)
+        public static void RandomizeArray<T>(T[] array)
         {
             T temp;
             int randomPos;

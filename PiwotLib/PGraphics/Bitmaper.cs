@@ -2,6 +2,9 @@
 
 namespace PiwotToolsLib.PGraphics
 {
+    /// <summary>
+    /// Piwot helper class ised to manage bitmaps.
+    /// </summary>
     public static class Bitmaper
     {
         /// <summary>
@@ -72,46 +75,54 @@ namespace PiwotToolsLib.PGraphics
             }
 
         }
+
         /// <summary>
         /// Returns a new resized instance of the oryginal bitmap, that fits given size, and fills empty space with a given color.
         /// </summary>
         /// <param name="bitmap">The oryginal bitmap.</param>
         /// <param name="width">Given height.</param>
         /// <param name="height">Given width.</param>
-        /// <param name="fillColor"></param>
+        /// <param name="fillColor">The color used to fill the empty part of the new bitmap.</param>
         /// <returns></returns>
         public static Bitmap ResizeToFit(Bitmap bitmap, int width, int height, Color fillColor)
         {
             float dRatio = (float)width / (float)height;
             float bRatio = (float)bitmap.Width / (float)bitmap.Height;
             Bitmap nb = new Bitmap(width, height);
-            
-            if (dRatio < bRatio)
+            using (Graphics g = Graphics.FromImage(nb))
             {
-                using (Graphics g = Graphics.FromImage(nb))
+                g.FillRectangle(new SolidBrush(fillColor), 0, 0, width, height);
+
+                if (dRatio < bRatio)
                 {
+
                     g.DrawImage(new Bitmap(bitmap, width, (int)(width / bRatio)), 0, 0);
+                    return nb;
                 }
-                return nb;
-            }
-            else
-            {
-                using (Graphics g = Graphics.FromImage(nb))
+                else
                 {
                     g.DrawImage(new Bitmap(bitmap, (int)(height * bRatio), height), 0, 0);
+                    return nb;
                 }
-                return nb;
             }
 
         }
 
-        public static Bitmap CutColorBits(Bitmap b, Coloring.ColorEncoding colorEncoding)
+        /// <summary>
+        /// Returns new bitmap with colors encoded with a given number of bits.
+        /// </summary>
+        /// <param name="b">The bitmap to have its color bits cut.</param>
+        /// <param name="colorEncoding">The color encoding to be used.</param>
+        /// <param name="alphaEncoding">The alpha encoding to be used.</param>
+        /// <returns></returns>
+        public static Bitmap CutColorBits(Bitmap b, Coloring.ColorEncodingMasks colorEncoding, Coloring.AlphaEncodingMasks alphaEncoding)
         {
+            uint mask = Coloring.CombineMasks(colorEncoding, alphaEncoding);
             for (int y = 0; y < b.Height; y++)
             {
                 for (int x = 0; x < b.Width; x++)
                 {
-                    b.SetPixel(x, y, Coloring.CutBits(b.GetPixel(x, y), colorEncoding));
+                    b.SetPixel(x, y, Coloring.CutBits(b.GetPixel(x, y), mask));
                 }
             }
             return b;
