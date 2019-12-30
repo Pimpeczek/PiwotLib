@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.PMath
 {
+    /// <summary>
+    /// Piwot helper class to help with mathematical operations.
+    /// </summary>
     public class Arit
     {
         #region Clamps
@@ -274,46 +277,7 @@ namespace PiwotToolsLib.PMath
         #endregion
 
         #region NumberOperations
-        public static int NarmalizeToMagnitude(int value, int magnitude)
-        {
-            if (magnitude <= 1)
-            {
-                throw new ArgumentOutOfRangeException("magnitude");
-            }
-
-            while (value > magnitude)
-                value /= magnitude;
-
-            return value;
-        }
-
-        public static float NarmalizeToMagnitude(float value, float magnitude)
-        {
-            if (magnitude <= 0)
-            {
-                throw new ArgumentOutOfRangeException("magnitude");
-            }
-
-            float multiplier = 1;
-
-            while(magnitude <= 1)
-            {
-                magnitude *= 10;
-                multiplier *= 10;
-            }
-            if(magnitude < 2)
-            {
-                magnitude *= 2;
-                multiplier *= 2;
-            }
-
-            while (value > magnitude)
-                value /= magnitude;
-
-            return value / multiplier;
-        }
-
-
+        
         #endregion
 
     }

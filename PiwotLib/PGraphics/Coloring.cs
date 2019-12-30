@@ -135,42 +135,42 @@ namespace PiwotToolsLib.PGraphics
         /// 8 bits are used to encode alpha channel.
         /// <para>0xFF000000</para>
         /// </summary>
-        public static readonly uint alphaMask24 = 0xFF000000;
+        public static readonly uint alphaMask8 = 0xFF000000;
         /// <summary>
         /// 7 bits are used to encode alpha channel.
         /// <para>0xFE000000</para>
         /// </summary>
-        public static readonly uint alphaMask21 = 0xFE000000;
+        public static readonly uint alphaMask7 = 0xFE000000;
         /// <summary>
         /// 6 bits are used to encode alpha channel.
         /// <para>0xFC000000</para>
         /// </summary>
-        public static readonly uint alphaMask18 = 0xFC000000;
+        public static readonly uint alphaMask6 = 0xFC000000;
         /// <summary>
         /// 5 bits are used to encode alpha channel.
         /// <para>0xF8000000</para>
         /// </summary>
-        public static readonly uint alphaMask15 = 0xF8000000;
+        public static readonly uint alphaMask5 = 0xF8000000;
         /// <summary>
         /// 4 bits are used to encode alpha channel.
         /// <para>0xF0000000</para>
         /// </summary>
-        public static readonly uint alphaMask12 = 0xF0000000;
+        public static readonly uint alphaMask4 = 0xF0000000;
         /// <summary>
         /// 3 bits are used to encode alpha channel.
         /// <para>0xE0000000</para>
         /// </summary>
-        public static readonly uint alphaMask9 = 0xE0000000;
+        public static readonly uint alphaMask3 = 0xE0000000;
         /// <summary>
         /// 2 bits are used to encode alpha channel.
         /// <para>0xC0000000</para>
         /// </summary>
-        public static readonly uint alphaMask6 = 0xC0000000;
+        public static readonly uint alphaMask2 = 0xC0000000;
         /// <summary>
         /// 1 bit is used to encode alpha channel.
         /// <para>0x80000000</para>
         /// </summary>
-        public static readonly uint alphaMask3 = 0x80000000;
+        public static readonly uint alphaMask1 = 0x80000000;
 
         /// <summary>
         /// Array of all color masks starting from 24 bits to 3 bits.
@@ -179,7 +179,7 @@ namespace PiwotToolsLib.PGraphics
         /// <summary>
         /// Array of all alpha masks starting from 8 bits to 1 bit.
         /// </summary>
-        public static readonly uint[] alphaMasks = new uint[8] { alphaMask24, alphaMask21, alphaMask18, alphaMask15, alphaMask12, alphaMask9, alphaMask6, alphaMask3 };
+        public static readonly uint[] alphaMasks = new uint[8] { alphaMask8, alphaMask7, alphaMask6, alphaMask5, alphaMask4, alphaMask3, alphaMask2, alphaMask1 };
 
         /// <summary>
         /// Returns a reversed version of a given color.

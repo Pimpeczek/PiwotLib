@@ -4,11 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PiwotToolsLib.Console
+namespace PiwotToolsLib.Text
 {
-    public class Boxes
+    /*
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Boxes
     {
-        public enum BoxType { light, round, normal, doubled, dashed, dashedLight };
+        /// <summary>
+        /// Type of a box border.
+        /// </summary>
+        public enum BoxType
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            light,
+            /// <summary>
+            /// 
+            /// </summary>
+            round,
+            /// <summary>
+            /// 
+            /// </summary>
+            normal,
+            /// <summary>
+            /// 
+            /// </summary>
+            doubled,
+            /// <summary>
+            /// 
+            /// </summary>
+            dashed,
+            /// <summary>
+            /// 
+            /// </summary>
+            dashedLight
+        };
         public static readonly Char cor_b_lu = '╔';
         public static readonly Char cor_b_ru = '╗';
         public static readonly Char cor_b_rl = '╝';
@@ -71,23 +104,6 @@ namespace PiwotToolsLib.Console
         }
 
 
-        /*
-        protected char GetBorderChar(Int2 pos, char[] boxes)
-        {
-            int id = 0;
-            if (pos.x > 0 && borderMap[pos.x - 1, pos.y])
-                id += 1;
-            if (pos.y < Size.y - 1 && borderMap[pos.x, pos.y + 1])
-                id += 2;
-            if (pos.x < Size.x - 1 && borderMap[pos.x + 1, pos.y])
-                id += 4;
-            if (pos.y > 0 && borderMap[pos.x, pos.y - 1])
-                id += 8;
-            id -= 3;
-            return boxes[id];
-        }
-        */
-
         public static Char[] GetBoxArray(BoxType boxType)
         {
             Char[] bs;
@@ -115,25 +131,6 @@ namespace PiwotToolsLib.Console
             return bs;
         }
 
-        /*public static void DrawBox(BoxType boxType, int x, int y, int sx, int sy)
-        {
-            DrawBox(GetBoxArray(boxType), x, y, sx, sy);
-        }
-
-        public static void DrawBox(Char[] bs, int x, int y, int sx, int sy)
-        {
-            Renderer.Write($"{bs[3]}{"".PadLeft(sx - 2, bs[2])}{bs[0]}", x, y);
-            string midBorder = $"{bs[7]}{"".PadLeft(sx - 2)}{bs[7]}";
-            for (int i = 1; i < sy - 1; i++)
-            {
-                Renderer.Write(midBorder, x, y + i);
-
-            }
-            Renderer.Write($"{bs[9]}{"".PadLeft(sx - 2, bs[2])}{bs[6]}", x, y + sy - 1);
-
-        rand
-    }
-    */
         public static string GetBoxName(string name, BoxType boxType)
         {
             return GetBoxName(name, GetBoxArray(boxType));
@@ -144,4 +141,5 @@ namespace PiwotToolsLib.Console
             return $"{boxes[8]}{name}{boxes[11]}";
         }
     }
+    */
 }

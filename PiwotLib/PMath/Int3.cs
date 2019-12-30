@@ -6,25 +6,75 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.PMath
 {
+    /// <summary>Class storing three integers. All operations are pointwise.</summary>
     public class Int3: IComparable
     {
-        protected int x, y, z;
-        public int X { get; protected set; }
-        public int Y { get; protected set; }
-        public int Z { get; protected set; }
+        #region Fields
+        /// <summary>
+        /// The x value;
+        /// </summary>
+        protected int x;
+        /// <summary>
+        /// The y value;
+        /// </summary>
+        protected int y;
+        /// <summary>
+        /// The z value;
+        /// </summary>
+        protected int z;
+        /// <summary>
+        /// The x value;
+        /// </summary>
+        public int X { get; set; }
+        /// <summary>
+        /// The y value;
+        /// </summary>
+        public int Y { get; set; }
+        /// <summary>
+        /// The z value;
+        /// </summary>
+        public int Z { get; set; }
+        #endregion
 
         #region Static values
+        /// <summary>
+        /// (0, 0, 0)
+        /// </summary>
         public static Int3 Zero { get; } = new Int3(0, 0, 0);
+        /// <summary>
+        /// (1, 1, 1)
+        /// </summary>
         public static Int3 One { get; } = new Int3(1, 1, 1);
+        /// <summary>
+        /// (0, 1, 0)
+        /// </summary>
         public static Int3 Up { get; } = new Int3(0, 1, 0);
+        /// <summary>
+        /// (1, 0, 0)
+        /// </summary>
         public static Int3 Right { get; } = new Int3(1, 0, 0);
+        /// <summary>
+        /// (0, -1, 0)
+        /// </summary>
         public static Int3 Down { get; } = new Int3(0, -1, 0);
+        /// <summary>
+        /// (-1, 0, 0)
+        /// </summary>
         public static Int3 Left { get; } = new Int3(-1, 0, 0);
+        /// <summary>
+        /// (0, 0, 1)
+        /// </summary>
         public static Int3 Forward { get; } = new Int3(0, 0, 1);
+        /// <summary>
+        /// (0, 0, -1)
+        /// </summary>
         public static Int3 Back { get; } = new Int3(0, 0, -1);
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// 
+        /// </summary>
         public Int3()
         {
             x = 0;
@@ -32,19 +82,32 @@ namespace PiwotToolsLib.PMath
             z = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xyz"></param>
         public Int3(int xyz)
         {
             x = xyz;
             y = xyz;
             z = xyz;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public Int3(int x, int y, int z)
         {
             this.x = x;
             this.y = y;
             this.z = z;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i2"></param>
         public Int3(Int3 i2)
         {
             x = i2.x;
@@ -324,46 +387,137 @@ namespace PiwotToolsLib.PMath
         #endregion
 
         #region Operators
+
+        /// <summary>
+        /// The pointwise addition operation between two Int3 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int3 operator +(Int3 i1, Int3 i2) { return new Int3(i1.x + i2.x, i1.y + i2.y, i1.z + i2.z); }
+        /// <summary>
+        /// The addition operation between a Int3 object and a integer. All X, Y and Z are incremented by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int3 operator +(Int3 i1, int x) { return new Int3(i1.x + x, i1.y + x, i1.z + x); }
 
+        /// <summary>
+        /// The pointwise suntraction operation between two Int3 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int3 operator -(Int3 i1, Int3 i2) { return new Int3(i1.x - i2.x, i1.y - i2.y, i1.z - i2.z); }
+        /// <summary>
+        /// The suntraction operation between a Int3 object and a integer. All X, Y and Z are decremented by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int3 operator -(Int3 i1, int x) { return new Int3(i1.x - x, i1.y - x, i1.z - x); }
 
+        /// <summary>
+        /// The pointwise multiplication operation between two Int3 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int3 operator *(Int3 i1, Int3 i2) { return new Int3(i1.x * i2.x, i1.y * i2.y, i1.z * i2.z); }
+        /// <summary>
+        /// The multiplication operation between a Int3 object and a integer. All X, Y and Z are multiplied by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int3 operator *(Int3 i1, int x) { return new Int3(i1.x * x, i1.y * x, i1.z * x); }
 
+        /// <summary>
+        /// The pointwise division operation between two Int3 objects.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static Int3 operator /(Int3 i1, Int3 i2) { return new Int3(i1.x / i2.x, i1.y / i2.y, i1.z / i2.z); }
+        /// <summary>
+        /// The division operation between a Int3 object and a integer. All X, Y and Z are divided by a given value.
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public static Int3 operator /(Int3 i1, int x) { return new Int3(i1.x / x, i1.y / x, i1.z / x); }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator ==(Int3 i1, Int3 i2)
         {
-            if ((object)i2 == null) return (object)i1 == null; if ((object)i1 == null) return (object)i2 == null;
+            if (i2 is null) return i1 is null; if (i1 is null) return i2 is null;
             if (i1.x == i2.x && i1.y == i2.y && i1.z == i2.z) return true; return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator !=(Int3 i1, Int3 i2)
         {
-            if ((object)i2 == null) return (object)i1 != null; if ((object)i1 == null) return (object)i2 != null;
+            if (i2 is null) return !(i1 is null); if (i1 is null) return !(i2 is null);
             if (i1.x == i2.x && i1.y == i2.y && i1.z == i2.z) return false; return true;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator >=(Int3 i1, Int3 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x >= i2.x && i1.y >= i2.y && i1.z >= i2.z) return true; return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator <=(Int3 i1, Int3 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x <= i2.x && i1.y <= i2.y && i1.z <= i2.z) return true; return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator >(Int3 i1, Int3 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
             if (i2 == null) throw new ArgumentNullException("i2");
             if (i1.x > i2.x && i1.y > i2.y && i1.z > i2.z) return true; return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i1"></param>
+        /// <param name="i2"></param>
+        /// <returns></returns>
         public static bool operator <(Int3 i1, Int3 i2)
         {
             if (i1 == null) throw new ArgumentNullException("i1");
@@ -371,7 +525,11 @@ namespace PiwotToolsLib.PMath
             if (i1.x < i2.x && i1.y < i2.y && i1.z < i2.z) return true; return false;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -381,6 +539,12 @@ namespace PiwotToolsLib.PMath
         }
         #endregion
 
+        #region Misc
+
+        /// <summary>
+        /// Creates a hash code of this object.
+        /// </summary>
+        /// <returns></returns>
         public override int GetHashCode()
         {
             unchecked
@@ -392,10 +556,21 @@ namespace PiwotToolsLib.PMath
                 return result;
             }
         }
+
+        /// <summary>
+        /// Returns a string representation of this Int3 object.
+        /// </summary>
+        /// <returns></returns>
         override public string ToString()
         {
             return $"{x}, {y}, {z}";
         }
+
+        /// <summary>
+        /// Copares two Int3 objects.
+        /// </summary>
+        /// <param name="obj">The other object</param>
+        /// <returns></returns>
         public int CompareTo(object obj)
         {
             if (obj == null) return 1;
@@ -409,5 +584,6 @@ namespace PiwotToolsLib.PMath
             else
                 throw new ArgumentException("Object is not an Int3");
         }
+        #endregion
     }
 }

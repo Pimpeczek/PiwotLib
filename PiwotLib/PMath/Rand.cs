@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace PiwotToolsLib.PMath
 {
-    public class Rand
+    /// <summary>
+    /// Piwot helper class to do with randomness.
+    /// </summary>
+    public static class Rand
     {
         static Random rng = new Random();
 

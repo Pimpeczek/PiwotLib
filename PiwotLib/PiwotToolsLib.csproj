@@ -63,8 +63,8 @@
     <Compile Include="Calc\Exceptions\InvalidTokenSymbolException.cs" />
     <Compile Include="Calc\Exceptions\WrongNumberOfArgumentsException.cs" />
     <Compile Include="Calc\CalculatorBase.cs" />
-    <Compile Include="Console\Bars.cs" />
-    <Compile Include="Console\Boxes.cs" />
+    <Compile Include="Text\Bars.cs" />
+    <Compile Include="Text\Boxes.cs" />
     <Compile Include="Data\Arrays.cs" />
     <Compile Include="Data\Loops.cs" />
     <Compile Include="Data\Stringer.cs" />
@@ -74,7 +74,6 @@
     <Compile Include="PMath\Int2.cs" />
     <Compile Include="PMath\Int3.cs" />
     <Compile Include="PMath\Rand.cs" />
-    <Compile Include="Miscc.cs" />
     <Compile Include="RuntimeTestingClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

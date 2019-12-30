@@ -53,13 +53,66 @@ namespace PiwotToolsLib.Data
                     counter++;
             return counter;
         }
+
+
+
+        /// <summary>Counts how many elements of a given bool array are true.</summary>
+        /// <param name="boolArr">The array to be analized.</param>
+        public static int CountTrues(bool[,] boolArr)
+        {
+            int counter = 0;
+            int width = boolArr.GetLength(0);
+            int height = boolArr.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    if (boolArr[i,j])
+                        counter++;
+            return counter;
+        }
+
+        /// <summary>Counts how many elements of a given bool array are false.</summary>
+        /// <param name="boolArr">The array to be analized.</param>
+        public static int CountFalses(bool[,] boolArr)
+        {
+            return boolArr.GetLength(0) * boolArr.GetLength(1) - CountTrues(boolArr);
+        }
+
+        /// <summary>Counts how many elements of a given array satisfy a given condition.</summary>
+        /// <param name="array">The array to be analized.</param>
+        /// <param name="condition">The condition based on an element.</param>
+        public static int CountByCondition<T>(T[,] array, Func<T, bool> condition)
+        {
+            int counter = 0;
+            int width = array.GetLength(0);
+            int height = array.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    if (condition(array[i,j]))
+                        counter++;
+            return counter;
+        }
+
+        /// <summary>Counts how many elements of a given array satisfy a given condition.</summary>
+        /// <param name="array">The array to be analized.</param>
+        /// <param name="condition">The condition based on an element and its position.</param>
+        public static int CountByCondition<T>(T[,] array, Func<T, int, int, bool> condition)
+        {
+            int counter = 0;
+            int width = array.GetLength(0);
+            int height = array.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    if (condition(array[i, j], i, j))
+                        counter++;
+            return counter;
+        }
         #endregion
 
         #region Building arrays
-        /// <summary>Returns new instance of a type T array with all values set using a given function.</summary>
+        /// <summary>Returns new instance of a type T array with all fields to a given value.</summary>
         /// <param name="length">The length of a new array.</param>
         /// <param name="value">The value assigned values to fields in the new array.</param>
-        public static T[] GetCustomArray<T>(int length, T value)
+        public static T[] BuildArray<T>(int length, T value)
         {
             T[] boolArr = new T[length];
             for (int i = 0; i < boolArr.Length; i++)
@@ -70,13 +123,43 @@ namespace PiwotToolsLib.Data
         /// <summary>Returns new instance of a type T array with all values set using a given function.</summary>
         /// <param name="length">The length of a new array.</param>
         /// <param name="func">The function used to assign values to the new array</param>
-        public static T[] GetCustomArray<T>(int length, Func<int, T> func)
+        public static T[] BuildArray<T>(int length, Func<int, T> func)
         {
             T[] boolArr = new T[length];
             for (int i = 0; i < boolArr.Length; i++)
                 boolArr[i] = func(i);
             return boolArr;
         }
+
+
+
+
+        /// <summary>Returns new instance of a type T array with all fields to a given value.</summary>
+        /// <param name="width">The width of a new array.</param>
+        /// <param name="height">The height of a new array.</param>
+        /// <param name="value">The value assigned values to fields in the new array.</param>
+        public static T[,] BuildArray<T>(int width, int height, T value)
+        {
+            T[,] boolArr = new T[width, height];
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    boolArr[i, j] = value;
+            return boolArr;
+        }
+
+        /// <summary>Returns new instance of a type T array with all values set using a given function.</summary>
+        /// <param name="width">The width of a new array.</param>
+        /// <param name="height">The height of a new array.</param>
+        /// <param name="func">The function used to assign values to the new array</param>
+        public static T[,] BuildArray<T>(int width, int height, Func<int, int, T> func)
+        {
+            T[,] boolArr = new T[width, height];
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                        boolArr[i, j] = func(i, j);
+            return boolArr;
+        }
+
         #endregion
 
         #region Iterating
@@ -110,6 +193,34 @@ namespace PiwotToolsLib.Data
                 array[i] = func(array[i], i);
         }
 
+
+        /// <summary>Performs a given action on each element of a given array.</summary>
+        /// <typeparam name="T">Type of an array.</typeparam>
+        /// <param name="array">The array to be iterated through.</param>
+        /// <param name="action">The action to be performed based on an element and its position.</param>
+        public static void IterateThrough<T>(T[,] array, Action<T, int, int> action)
+        {
+            int width = array.GetLength(0);
+            int height = array.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    action(array[i, j], i, j);
+
+        }
+
+        /// <summary>Assigns a value to each field on a given array based of a given function.</summary>
+        /// <typeparam name="T">Type of an array.</typeparam>
+        /// <param name="array">The array to be iterated through.</param>
+        /// <param name="func">The function based on an element and its position.</param>
+        public static void IterateThrough<T>(T[,] array, Func<T, int, int, T> func)
+        {
+            int width = array.GetLength(0);
+            int height = array.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    array[i, j] = func(array[i, j], i, j);
+        }
+
         /// <summary>Negates all elements of a given bool array.</summary>
         /// <param name="boolArr">The array to be negated.</param>
         public static bool[] NegateBoolArray(bool[] boolArr)
@@ -118,6 +229,19 @@ namespace PiwotToolsLib.Data
                 boolArr[i] = !boolArr[i];
             return boolArr;
         }
+
+        /// <summary>Negates all elements of a given bool array.</summary>
+        /// <param name="boolArr">The array to be negated.</param>
+        public static bool[,] NegateBoolArray(bool[,] boolArr)
+        {
+            int width = boolArr.GetLength(0);
+            int height = boolArr.GetLength(1);
+            for (int i = 0; i < width; i++)
+                for (int j = 0; j < height; j++)
+                    boolArr[i, j] = !boolArr[i, j];
+            return boolArr;
+        }
+
         #endregion
 
         #region Operations on size
