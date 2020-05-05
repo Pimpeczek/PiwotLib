@@ -59,6 +59,14 @@ namespace PiwotToolsLib.PMath
         /// </summary>
         public static Int2 One { get; } = new Int2(1, 1);
         /// <summary>
+        /// (2147483647,2147483647)
+        /// </summary>
+        public static Int2 MaxValue { get; } = new Int2(int.MaxValue);
+        /// <summary>
+        /// (-2147483648,-2147483648)
+        /// </summary>
+        public static Int2 MinValue { get; } = new Int2(int.MinValue);
+        /// <summary>
         /// (0,1)
         /// </summary>
         public static Int2 Up { get; } = new Int2(0, 1);
@@ -140,6 +148,113 @@ namespace PiwotToolsLib.PMath
         {
             return new Int2(y, x);
         }
+
+        ///<summary>Rotates values of x and y in clockwise direction in this instance of the object.
+        ///</summary>
+        public void RotateRight()
+        {
+            int t = x;
+            x = y;
+            y = -t;
+        }
+
+        ///<summary>Rotates values of x and y in anti-clockwise direction in this instance of the object.
+        ///</summary>
+        public void RotateLeft()
+        {
+            int t = x;
+            x = -y;
+            y = t;
+        }
+
+
+        /// <summary>
+        /// Rotates values of x and y a given amount of times in a given direction.
+        /// </summary>
+        /// <param name="direction">The direction of rotation, positive numbers being clockwise.</param>
+        public void Rotate(int direction)
+        {
+            bool leftFlag = false;
+            if (direction < 0)
+            {
+                direction *= 1;
+                leftFlag = true;
+            }
+            direction %= 4;
+            if (direction == 0)
+                return;
+            if (leftFlag)
+            {
+                for (int i = 0; i < direction; i++)
+                {
+                    RotateLeft();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < direction; i++)
+                {
+                    RotateRight();
+                }
+            }
+        }
+
+        ///<summary>Rotates values of x and y in clockwise direction.
+        ///</summary>
+        static public void RotateRight(Int2 i)
+        {
+            i.RotateRight();
+        }
+
+        ///<summary>Rotates values of x and y in anti-clockwise direction.
+        ///</summary>
+        static public void RotateLeft(Int2 i)
+        {
+            i.RotateLeft();
+        }
+
+
+        /// <summary>
+        /// Rotates values of x and y a given amount of times in a given direction.
+        /// </summary>
+        /// <param name="direction">The direction of rotation, positive numbers being clockwise.</param>
+        static public void Rotate(Int2 i, int direction)
+        {
+            i.Rotate(direction);
+        }
+
+
+        ///<summary>Return a new instance of Int2 with values of x and y rotated in clockwise direction.
+        ///</summary>
+        public Int2 RotatedRight()
+        {
+            Int2 i = new Int2(this);
+            i.RotateRight();
+            return i;
+        }
+
+        ///<summary>Return a new instance of Int2 with values of x and y rotated in anti-clockwise direction.
+        ///</summary>
+        public Int2 RotatedLeft()
+        {
+            Int2 i = new Int2(this);
+            i.RotatedLeft();
+            return i;
+        }
+
+
+        /// <summary>
+        /// Return a new instance of Int2 with values of x and y rotated in a given direction.
+        /// </summary>
+        /// <param name="direction">The direction of rotation, positive numbers being clockwise.</param>
+        public Int2 Rotated(int direction)
+        {
+            Int2 i = new Int2(this);
+            i.Rotate(direction);
+            return i;
+        }
+
+
 
         ///<summary>Returns a new instance of Int2 with values of x and y clamped between 0 and inclusiveMax.
         ///</summary>

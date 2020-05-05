@@ -106,6 +106,165 @@ namespace PiwotToolsLib.Data
                         counter++;
             return counter;
         }
+
+        /// <summary>
+        /// Finds the longest element in a given array.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array">The array to check.</param>
+        /// <returns></returns>
+        public static int FindLongestElement<T>(T[][] array)
+        {
+            int longestPos = array.Length - 1;
+            for (int i = longestPos - 1; i >= 0; i--)
+            {
+                if (array[longestPos].Length < array[i].Length)
+                    longestPos = i;
+            }
+            return longestPos;
+        }
+
+        /// <summary>
+        /// Finds the shortest element in a given array.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array">The array to check.</param>
+        /// <returns></returns>
+        public static int FindShortestElement<T>(T[][] array)
+        {
+            int shortestPos = array.Length - 1;
+            for (int i = shortestPos - 1; i >= 0; i--)
+            {
+                if (array[shortestPos].Length > array[i].Length)
+                    shortestPos = i;
+            }
+            return shortestPos;
+        }
+
+        /// <summary>
+        /// Finds the longest element in a given string array.
+        /// </summary>
+        /// <param name="array">The array to check.</param>
+        /// <returns></returns>
+        public static int FindLongestElement(string[] array)
+        {
+            int longestPos = array.Length - 1;
+            for (int i = longestPos - 1; i >= 0; i--)
+            {
+                if (array[longestPos].Length < array[i].Length)
+                    longestPos = i;
+            }
+            return longestPos;
+        }
+
+        /// <summary>
+        /// Finds the shortest element in a given string array.
+        /// </summary>
+        /// <param name="array">The array to check.</param>
+        /// <returns></returns>
+        public static int FindShortestElement(string[] array)
+        {
+            int shortestPos = array.Length - 1;
+            for (int i = shortestPos - 1; i >= 0; i--)
+            {
+                if (array[shortestPos].Length > array[i].Length)
+                    shortestPos = i;
+            }
+            return shortestPos;
+        }
+
+        /// <summary>
+        /// Returns position of the best element according to a given score function.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array"></param>
+        /// <param name="scoreFunction">Function that evaluates elements.</param>
+        /// <returns></returns>
+        public static int FindBestElement<T>(T[] array, Func<T, int> scoreFunction)
+        {
+            int curPos = array.Length - 1;
+            int bestScore;
+            int tempScore;
+            bestScore = scoreFunction(array[curPos]);
+            for (int i = curPos - 1; i >= 0; i--)
+            {
+                if ((tempScore = scoreFunction(array[i])) > bestScore)
+                {
+                    bestScore = tempScore;
+                    curPos = i;
+                }
+            }
+            return curPos;
+        }
+
+        /// <summary>
+        /// Returns position of the worst element according to a given score function.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array"></param>
+        /// <param name="scoreFunction">Function that evaluates elements.</param>
+        /// <returns></returns>
+        public static int FindWorstElement<T>(T[] array, Func<T, int> scoreFunction)
+        {
+            int curPos = array.Length - 1;
+            int worstScore;
+            int tempScore;
+            worstScore = scoreFunction(array[curPos]);
+            for (int i = curPos - 1; i >= 0; i--)
+            {
+                if ((tempScore = scoreFunction(array[i])) < worstScore)
+                {
+                    worstScore = tempScore;
+                }
+            }
+            return curPos;
+        }
+
+        /// <summary>
+        /// Returns score of the best element according to a given score function.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array"></param>
+        /// <param name="scoreFunction">Function that evaluates elements.</param>
+        /// <returns></returns>
+        public static int FindBestElementScore<T>(T[] array, Func<T, int> scoreFunction)
+        {
+            int bestScore;
+            int tempScore;
+            bestScore = scoreFunction(array[array.Length - 1]);
+            for (int i = array.Length - 2; i >= 0; i--)
+            {
+                if ((tempScore = scoreFunction(array[i])) > bestScore)
+                {
+                    bestScore = tempScore;
+                }
+            }
+            return bestScore;
+        }
+        /// <summary>
+        /// Returns score of the best element according to a given score function.
+        /// </summary>
+        /// <typeparam name="T">Array type</typeparam>
+        /// <param name="array"></param>
+        /// <param name="scoreFunction">Function that evaluates elements.</param>
+        /// <returns></returns>
+        public static int FindWorstElementScore<T>(T[] array, Func<T, int> scoreFunction)
+        {
+            int worstScore;
+            int tempScore;
+            worstScore = scoreFunction(array[array.Length - 1]);
+            for (int i = array.Length - 2; i >= 0; i--)
+            {
+                if ((tempScore = scoreFunction(array[i])) < worstScore)
+                {
+                    worstScore = tempScore;
+                }
+            }
+            return worstScore;
+        }
+
+
+
         #endregion
 
         #region Building arrays
@@ -594,5 +753,7 @@ namespace PiwotToolsLib.Data
             array[pos2] = temp;
         }
         #endregion
+
+
     }
 }

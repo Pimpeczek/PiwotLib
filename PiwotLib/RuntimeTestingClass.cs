@@ -8,7 +8,7 @@ namespace PiwotToolsLib
 {
     class RuntimeTestingClass
     {
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             while (true)
             {
