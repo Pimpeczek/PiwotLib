@@ -53,35 +53,35 @@ namespace PiwotToolsLib.PMath
         /// <summary>
         /// (0,0)
         /// </summary>
-        public static Int2 Zero { get; } = new Int2(0, 0);
+        public static Int2 Zero { get { return new Int2(0); } }
         /// <summary>
         /// (1,1)
         /// </summary>
-        public static Int2 One { get; } = new Int2(1, 1);
+        public static Int2 One { get { return new Int2(1); } }
         /// <summary>
         /// (2147483647,2147483647)
         /// </summary>
-        public static Int2 MaxValue { get; } = new Int2(int.MaxValue);
+        public static Int2 MaxValue { get { return new Int2(int.MaxValue); } }
         /// <summary>
         /// (-2147483648,-2147483648)
         /// </summary>
-        public static Int2 MinValue { get; } = new Int2(int.MinValue);
+        public static Int2 MinValue { get { return new Int2(int.MinValue); } }
         /// <summary>
         /// (0,1)
         /// </summary>
-        public static Int2 Up { get; } = new Int2(0, 1);
+        public static Int2 Up { get { return new Int2(0, 1); } }
         /// <summary>
         /// (1,0)
         /// </summary>
-        public static Int2 Right { get; } = new Int2(1, 0);
+        public static Int2 Right { get { return new Int2(1, 0); } }
         /// <summary>
         /// (0,-1)
         /// </summary>
-        public static Int2 Down { get; } = new Int2(0, -1);
+        public static Int2 Down { get { return new Int2(0, -1); } }
         /// <summary>
         /// (-1,0)
         /// </summary>
-        public static Int2 Left { get; } = new Int2(-1, 0);
+        public static Int2 Left { get { return new Int2(-1, 0); } }
         #endregion
 
         #region Constructors
@@ -177,7 +177,7 @@ namespace PiwotToolsLib.PMath
             bool leftFlag = false;
             if (direction < 0)
             {
-                direction *= 1;
+                direction *= -1;
                 leftFlag = true;
             }
             direction %= 4;
@@ -253,8 +253,6 @@ namespace PiwotToolsLib.PMath
             i.Rotate(direction);
             return i;
         }
-
-
 
         ///<summary>Returns a new instance of Int2 with values of x and y clamped between 0 and inclusiveMax.
         ///</summary>

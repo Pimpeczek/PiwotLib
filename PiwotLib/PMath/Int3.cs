@@ -40,35 +40,35 @@ namespace PiwotToolsLib.PMath
         /// <summary>
         /// (0, 0, 0)
         /// </summary>
-        public static Int3 Zero { get; } = new Int3(0, 0, 0);
+        public static Int3 Zero { get { return new Int3(0, 0, 0); } }
         /// <summary>
         /// (1, 1, 1)
         /// </summary>
-        public static Int3 One { get; } = new Int3(1, 1, 1);
+        public static Int3 One { get{ return new Int3(1, 1, 1); } }
         /// <summary>
         /// (0, 1, 0)
         /// </summary>
-        public static Int3 Up { get; } = new Int3(0, 1, 0);
+        public static Int3 Up { get { return new Int3(0, 1, 0); } }
         /// <summary>
         /// (1, 0, 0)
         /// </summary>
-        public static Int3 Right { get; } = new Int3(1, 0, 0);
+        public static Int3 Right { get { return new Int3(1, 0, 0); } }
         /// <summary>
         /// (0, -1, 0)
         /// </summary>
-        public static Int3 Down { get; } = new Int3(0, -1, 0);
+        public static Int3 Down { get { return new Int3(0, -1, 0); } }
         /// <summary>
         /// (-1, 0, 0)
         /// </summary>
-        public static Int3 Left { get; } = new Int3(-1, 0, 0);
+        public static Int3 Left { get { return new Int3(-1, 0, 0); } }
         /// <summary>
         /// (0, 0, 1)
         /// </summary>
-        public static Int3 Forward { get; } = new Int3(0, 0, 1);
+        public static Int3 Forward { get { return new Int3(0, 0, 1); } }
         /// <summary>
         /// (0, 0, -1)
         /// </summary>
-        public static Int3 Back { get; } = new Int3(0, 0, -1);
+        public static Int3 Back { get { return new Int3(0, 0, -1); } }
         #endregion
 
         #region Constructors
