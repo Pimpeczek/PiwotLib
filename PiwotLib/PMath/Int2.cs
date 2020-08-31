@@ -254,6 +254,26 @@ namespace PiwotToolsLib.PMath
             return i;
         }
 
+        /// <summary>
+        /// Returns a direction closest to a given vector where "Up"(0, 1) is 0, "Right"(1, 0) is 1, "Down"(0, -1) is 2, "Left"(-1, 0) is 3. 
+        /// </summary>
+        /// <param name="vector"></param>
+        /// <returns></returns>
+        public int Compass(Int2 vector)
+        {
+            int lenX = Math.Abs(vector.X);
+            int lenY = Math.Abs(vector.Y);
+            if(lenX > lenY)
+            {
+                return (vector.X >= 0 ? 1 : 3);
+            }
+            else
+            {
+                return (vector.y >= 0 ? 0 : 2);
+            }
+
+        }
+
         ///<summary>Returns a new instance of Int2 with values of x and y clamped between 0 and inclusiveMax.
         ///</summary>
         ///<param name="i">The instance of Int2 class to be clamped.</param>
