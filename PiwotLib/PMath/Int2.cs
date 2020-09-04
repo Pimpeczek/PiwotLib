@@ -255,21 +255,45 @@ namespace PiwotToolsLib.PMath
         }
 
         /// <summary>
-        /// Returns a direction closest to a given vector where "Up"(0, 1) is 0, "Right"(1, 0) is 1, "Down"(0, -1) is 2, "Left"(-1, 0) is 3. 
+        /// Returns a direction closest to a given vector where "Up"(0, 1) is 0, "Right"(1, 0) is 1, "Down"(0, -1) is 2, "Left"(-1, 0) is 3. Will return 0 if vector==Int2.Zero
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
-        public int Compass(Int2 vector)
+        public static int Compass(Int2 vector)
         {
             int lenX = Math.Abs(vector.X);
             int lenY = Math.Abs(vector.Y);
-            if(lenX > lenY)
+            if (lenX > lenY)
             {
                 return (vector.X >= 0 ? 1 : 3);
             }
             else
             {
                 return (vector.y >= 0 ? 0 : 2);
+            }
+
+        }
+        /// <summary>
+        /// Returns a Int2 instance pointing in a given drection. Works for all values, as they are mapped to one of four(0,1,2,3) possible directions in a looping manner.
+        /// </summary>
+        /// <param name="direction">Any number</param>
+        /// <returns></returns>
+        public static Int2 Compass(int direction)
+        {
+            if(direction >= 0)
+            {
+                direction %= 4;
+            }
+            else
+            {
+                direction = 3 + (direction + 1) % 4;
+            }
+            switch(direction)
+            {
+                case 0:  return Up;
+                case 1:  return Right;
+                case 2:  return Down;
+                default: return Left;
             }
 
         }
