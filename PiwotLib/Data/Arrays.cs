@@ -319,6 +319,111 @@ namespace PiwotToolsLib.Data
             return boolArr;
         }
 
+        /// <summary>
+        /// Creates a 3D subarray from a specified region of a 3D array;
+        /// </summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="oryginalArray">Array to take values from.</param>
+        /// <param name="dim0From">Begining of the region to copy in first dimention.</param>
+        /// <param name="dim0Lenght">Length of the region to copy in first dimention.</param>
+        /// <param name="dim1From">Begining of the region to copy in second dimention.</param>
+        /// <param name="dim1Lenght">Length of the region to copy in second dimention.</param>
+        /// <param name="dim2From">Begining of the region to copy in third dimention.</param>
+        /// <param name="dim2Lenght">Length of the region to copy in third dimention.</param>
+        public static T[,,] CreateSubArray<T>(T[,,] oryginalArray, int dim0From, int dim0Lenght, int dim1From, int dim1Lenght, int dim2From, int dim2Lenght)
+        {
+            int dim0 = oryginalArray.GetLength(0);
+            int dim1 = oryginalArray.GetLength(1);
+            int dim2 = oryginalArray.GetLength(2);
+            if (dim0From + dim0Lenght > dim0 || dim0From < 0 || dim0Lenght < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim0.");
+            }
+            if (dim1From + dim1Lenght > dim1 || dim1From < 0 || dim1Lenght < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim1.");
+            }
+            if (dim2From + dim2Lenght > dim2 || dim2From < 0 || dim2Lenght < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim2.");
+            }
+            T[,,] newArray = new T[dim0Lenght, dim1Lenght, dim2Lenght];
+
+
+            for (int d0 = 0; d0 < dim0Lenght; d0++)
+            {
+                dim0 = d0 + dim0From;
+                for (int d1 = 0; d1 < dim1Lenght; d1++)
+                {
+                    dim1 = d1 + dim1From;
+                    for (int d2 = 0; d2 < dim2Lenght; d2++)
+                    {
+                        newArray[d0, d1, d2] = oryginalArray[dim0, dim1, d2 + dim1From];
+                    }
+                }
+            }
+            return newArray;
+        }
+
+        /// <summary>
+        /// Creates a 2D subarray from a specified region of a 2D array;
+        /// </summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="oryginalArray">Array to take values from.</param>
+        /// <param name="dim0From">Begining of the region to copy in first dimention.</param>
+        /// <param name="dim0Lenght">Length of the region to copy in first dimention.</param>
+        /// <param name="dim1From">Begining of the region to copy in second dimention.</param>
+        /// <param name="dim1Lenght">Length of the region to copy in second dimention.</param>
+        public static T[,] CreateSubArray<T>(T[,] oryginalArray, int dim0From, int dim0Lenght, int dim1From, int dim1Lenght)
+        {
+            int dim0 = oryginalArray.GetLength(0);
+            int dim1 = oryginalArray.GetLength(1);
+            if (dim0From + dim0Lenght > dim0 || dim0From < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim0.");
+            }
+            if (dim1From + dim1Lenght > dim1 || dim1From < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim1.");
+            }
+            T[,] newArray = new T[dim0Lenght, dim1Lenght];
+
+
+            for (int d0 = 0; d0 < dim0Lenght; d0++)
+            {
+                dim0 = d0 + dim0From;
+                for (int d1 = 0; d1 < dim1Lenght; d1++)
+                {
+                    newArray[d0, d1] = oryginalArray[dim0, d1 + dim1From];
+                }
+            }
+            return newArray;
+        }
+
+        /// <summary>
+        /// Creates a 1D subarray from a specified region of a 1D array;
+        /// </summary>
+        /// <typeparam name="T">Type of the array.</typeparam>
+        /// <param name="oryginalArray">Array to take values from.</param>
+        /// <param name="dim0From">Begining of the region to copy in first dimention.</param>
+        /// <param name="dim0Lenght">Length of the region to copy in first dimention.</param>
+        public static T[] CreateSubArray<T>(T[] oryginalArray, int dim0From, int dim0Lenght)
+        {
+            int dim0 = oryginalArray.GetLength(0);
+            if (dim0From + dim0Lenght > dim0 || dim0From < 0)
+            {
+                throw new ArgumentException("Out of bounds in dim0.");
+            }
+            T[] newArray = new T[dim0Lenght];
+
+
+            for (int d0 = 0; d0 < dim0Lenght; d0++)
+            {
+                newArray[d0] = oryginalArray[d0 + dim0From];
+            }
+            return newArray;
+        }
+
         #endregion
 
         #region Iterating
