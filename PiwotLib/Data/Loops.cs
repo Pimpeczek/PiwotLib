@@ -179,5 +179,70 @@ namespace PiwotToolsLib.Data
             }
         }
         #endregion
+
+        #region Edge loops with action
+        /// <summary>
+        /// For loop that only iterates through 'edges' of a virtual rectangle.
+        /// </summary>
+        /// <param name="xSize">Rectangle first dimention size</param>
+        /// <param name="ySize">Rectangle second dimention size</param>
+        /// <param name="action">The action to be invoked on the rectangle edges.
+        /// <para>Action arguments correspond to coordinates.</para></param>
+        public static void ForEdgesLoop(int xSize, int ySize, Action<int, int> action)
+        {
+            xSize -= 1;
+            ySize -= 1;
+            for (int x = 0; x <= xSize; x++)
+            {
+                action.Invoke(x, 0);
+                action.Invoke(x, ySize);
+            }
+            
+            for (int y = 1; y <= ySize; y++)
+            {
+                action.Invoke(0, y);
+                action.Invoke(xSize, y);
+            }
+        }
+
+        /// <summary>
+        /// For loop that only iterates through 'edges' of a virtual rectangle.
+        /// </summary>
+        /// <param name="xSize">Rectangle first dimention size</param>
+        /// <param name="ySize">Rectangle second dimention size</param>
+        /// <param name="zSize">Rectangle third dimention size</param>
+        /// <param name="action">The action to be invoked on the rectangle edges.
+        /// <para>Action arguments correspond to coordinates.</para></param>
+        public static void ForEdgesLoop(int xSize, int ySize, int zSize, Action<int, int, int> action)
+        {
+            xSize -= 1;
+            ySize -= 1;
+            zSize -= 1;
+            for (int x = 0; x <= xSize; x++)
+            {
+                action.Invoke(x, 0, 0);
+                action.Invoke(x, 0, zSize);
+                action.Invoke(x, ySize, 0);
+                action.Invoke(x, ySize, zSize);
+
+            }
+
+            for (int y = 0; y <= ySize; y++)
+            {
+                action.Invoke(0, y, 0);
+                action.Invoke(0, 0, zSize);
+                action.Invoke(xSize, ySize, 0);
+                action.Invoke(xSize, ySize, zSize);
+            }
+
+            for (int z = 0; z <= zSize; z++)
+            {
+                action.Invoke(0, 0, z);
+                action.Invoke(0, ySize, zSize);
+                action.Invoke(xSize, 0, z);
+                action.Invoke(xSize, ySize, z);
+            }
+        }
+        #endregion
     }
 }
