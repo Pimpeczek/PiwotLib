@@ -419,11 +419,21 @@ namespace PiwotToolsLib.PMath
             Data.Loops.ForLoop(r, r, 
                 (x, y) => {
                     positions.Add(new Int2(X + x, Y + y));
-                    if(x != 0 && y != 0)
+                    if(x != 0)
                     {
                         positions.Add(new Int2(X - x, Y + y));
-                        positions.Add(new Int2(X + x, Y - y));
-                        positions.Add(new Int2(X - x, Y - y));
+                        if (y != 0)
+                        {
+                            positions.Add(new Int2(X + x, Y - y));
+                            positions.Add(new Int2(X - x, Y - y));
+                        }
+                    }
+                    else
+                    {
+                        if (y != 0)
+                        {
+                            positions.Add(new Int2(X + x, Y - y));
+                        }
                     }
                 }
                 );
@@ -431,14 +441,24 @@ namespace PiwotToolsLib.PMath
             {
                 for (int y = r; y <= R; y++)
                 {
-                    if (powDist <= x + y)
+                    if (powDist >= x * x + y * y)
                     {
                         positions.Add(new Int2(X + x, Y + y));
-                        if (y != 0 && y != 0)
+                        if (x != 0)
                         {
                             positions.Add(new Int2(X - x, Y + y));
-                            positions.Add(new Int2(X + x, Y - y));
-                            positions.Add(new Int2(X - x, Y - y));
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                                positions.Add(new Int2(X - x, Y - y));
+                            }
+                        }
+                        else
+                        {
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                            }
                         }
                     }
                 }
@@ -448,14 +468,24 @@ namespace PiwotToolsLib.PMath
             {
                 for (int y = 0; y < P; y++)
                 {
-                    if (powDist <= x + y)
+                    if (powDist >= x * x + y * y)
                     {
                         positions.Add(new Int2(X + x, Y + y));
-                        if (y != 0 && y != 0)
+                        if (x != 0)
                         {
                             positions.Add(new Int2(X - x, Y + y));
-                            positions.Add(new Int2(X + x, Y - y));
-                            positions.Add(new Int2(X - x, Y - y));
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                                positions.Add(new Int2(X - x, Y - y));
+                            }
+                        }
+                        else
+                        {
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                            }
                         }
                     }
                 }
@@ -465,14 +495,24 @@ namespace PiwotToolsLib.PMath
             {
                 for (int y = P; y <= R; y++)
                 {
-                    if (powDist <= x + y)
+                    if (powDist >= x * x + y * y)
                     {
                         positions.Add(new Int2(X + x, Y + y));
-                        if (y != 0 && y != 0)
+                        if (x != 0)
                         {
                             positions.Add(new Int2(X - x, Y + y));
-                            positions.Add(new Int2(X + x, Y - y));
-                            positions.Add(new Int2(X - x, Y - y));
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                                positions.Add(new Int2(X - x, Y - y));
+                            }
+                        }
+                        else
+                        {
+                            if (y != 0)
+                            {
+                                positions.Add(new Int2(X + x, Y - y));
+                            }
                         }
                     }
                 }
