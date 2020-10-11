@@ -17,11 +17,13 @@ namespace PiwotToolsLib.Data
         /// </summary>
         /// <param name="xTimes">How many times does the loop happen.</param>
         /// <param name="func">The function to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
         /// <para>Function arguments correspond to loop iteration numbers.</para>
         /// <para>If false is returned the loop breaks.</para></param>
-        public static void ForLoop(int xTimes, Func<int, bool> func)
+        public static void ForLoop(int xTimes, Func<int, bool> func, int xOffset = 0)
         {
-            for (int x = 0; x < xTimes; x++)
+            xTimes += xOffset;
+            for (int x = xOffset; x < xTimes; x++)
                 if (!func.Invoke(x))
                     break;
         }
@@ -32,14 +34,18 @@ namespace PiwotToolsLib.Data
         /// <param name="xTimes">How many times does the outer loop happen.</param>
         /// <param name="yTimes">How many times does the inner loop happen.</param>
         /// <param name="func">The function to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
         /// <para>Function arguments correspond to loop iteration numbers.</para>
         /// <para>If false is returned the loop breaks.</para></param>
-        public static void ForLoop(int xTimes, int yTimes, Func<int, int, bool> func)
+        public static void ForLoop(int xTimes, int yTimes, Func<int, int, bool> func, int xOffset = 0, int yOffset = 0)
         {
             bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            for (int x = xOffset; repeat && x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = xOffset; repeat && y < yTimes; y++)
                 {
                     repeat = func.Invoke(x, y);
                 }
@@ -53,16 +59,22 @@ namespace PiwotToolsLib.Data
         /// <param name="yTimes">How many times does the middle loop happen.</param>
         /// <param name="zTimes">How many times does the inner loop happen.</param>
         /// <param name="func">The function to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
+        /// <param name="zOffset">Optional loop offset in Z axis</param>
         /// <para>Function arguments correspond to loop iteration numbers.</para>
         /// <para>If false is returned the loop breaks.</para></param>
-        public static void ForLoop(int xTimes, int yTimes, int zTimes, Func<int, int, int, bool> func)
+        public static void ForLoop(int xTimes, int yTimes, int zTimes, Func<int, int, int, bool> func, int xOffset = 0, int yOffset = 0, int zOffset = 0)
         {
             bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            zTimes += zOffset;
+            for (int x = xOffset; repeat && x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = yOffset; repeat && y < yTimes; y++)
                 {
-                    for (int z = 0; repeat && z < zTimes; z++)
+                    for (int z = zOffset; repeat && z < zTimes; z++)
                     {
                         repeat = func.Invoke(x, y, z);
                     }
@@ -77,10 +89,12 @@ namespace PiwotToolsLib.Data
         /// </summary>
         /// <param name="xTimes">How many times does the loop happen.</param>
         /// <param name="action">The action to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
         /// <para>Action arguments correspond to loop iteration numbers.</para></param>
-        public static void ForLoop(int xTimes, Action<int> action)
+        public static void ForLoop(int xTimes, Action<int> action, int xOffset = 0)
         {
-            for (int x = 0; x < xTimes; x++)
+            xTimes += xOffset;
+            for (int x = xOffset; x < xTimes; x++)
                 action.Invoke(x);
         }
 
@@ -90,13 +104,16 @@ namespace PiwotToolsLib.Data
         /// <param name="xTimes">How many times does the outer loop happen.</param>
         /// <param name="yTimes">How many times does the inner loop happen.</param>
         /// <param name="action">The action to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
         /// <para>Action arguments correspond to loop iteration numbers.</para></param>
-        public static void ForLoop(int xTimes, int yTimes, Action<int, int> action)
+        public static void ForLoop(int xTimes, int yTimes, Action<int, int> action, int xOffset = 0, int yOffset = 0)
         {
-            bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            for (int x = xOffset; x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = yOffset; y < yTimes; y++)
                 {
                     action.Invoke(x, y);
                 }
@@ -110,15 +127,20 @@ namespace PiwotToolsLib.Data
         /// <param name="yTimes">How many times does the middle loop happen.</param>
         /// <param name="zTimes">How many times does the inner loop happen.</param>
         /// <param name="action">The action to be invoked given number of times.
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
+        /// <param name="zOffset">Optional loop offset in Z axis</param>
         /// <para>Action arguments correspond to loop iteration numbers.</para></param>
-        public static void ForLoop(int xTimes, int yTimes, int zTimes, Action<int, int, int> action)
+        public static void ForLoop(int xTimes, int yTimes, int zTimes, Action<int, int, int> action, int xOffset = 0, int yOffset = 0, int zOffset = 0)
         {
-            bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            zTimes += zOffset;
+            for (int x = xOffset; x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = yOffset; y < yTimes; y++)
                 {
-                    for (int z = 0; repeat && z < zTimes; z++)
+                    for (int z = zOffset; z < zTimes; z++)
                     {
                         action.Invoke(x, y, z);
                     }
@@ -132,10 +154,12 @@ namespace PiwotToolsLib.Data
         /// Basic for loop that runs for a given number of times.
         /// </summary>
         /// <param name="xTimes">How many times does the loop happen.</param>
+        /// <param name="xOffset">Optional loop offset in X axis</param>
         /// <param name="action">The action to be invoked given number of times.</param>
-        public static void ForLoop(int xTimes, Action action)
+        public static void ForLoop(int xTimes, Action action, int xOffset = 0)
         {
-            for (int x = 0; x < xTimes; x++)
+            xTimes += xOffset;
+            for (int x = xOffset; x < xTimes; x++)
                 action.Invoke();
         }
 
@@ -144,13 +168,16 @@ namespace PiwotToolsLib.Data
         /// </summary>
         /// <param name="xTimes">How many times does the outer loop happen.</param>
         /// <param name="yTimes">How many times does the inner loop happen.</param>
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
         /// <param name="action">The action to be invoked given number of times.</param>
-        public static void ForLoop(int xTimes, int yTimes, Action action)
+        public static void ForLoop(int xTimes, int yTimes, Action action, int xOffset = 0, int yOffset = 0)
         {
-            bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            for (int x = xOffset; x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = yOffset; y < yTimes; y++)
                 {
                     action.Invoke();
                 }
@@ -163,15 +190,20 @@ namespace PiwotToolsLib.Data
         /// <param name="xTimes">How many times does the outer loop happen.</param>
         /// <param name="yTimes">How many times does the middle loop happen.</param>
         /// <param name="zTimes">How many times does the inner loop happen.</param>
+        /// <param name="xOffset">Optional loop offset in X axis</param>
+        /// <param name="yOffset">Optional loop offset in Y axis</param>
+        /// <param name="zOffset">Optional loop offset in Z axis</param>
         /// <param name="action">The action to be invoked given number of times.</param>
-        public static void ForLoop(int xTimes, int yTimes, int zTimes, Action action)
+        public static void ForLoop(int xTimes, int yTimes, int zTimes, Action action, int xOffset = 0, int yOffset = 0, int zOffset = 0)
         {
-            bool repeat = true;
-            for (int x = 0; repeat && x < xTimes; x++)
+            xTimes += xOffset;
+            yTimes += yOffset;
+            zTimes += zOffset;
+            for (int x = xOffset; x < xTimes; x++)
             {
-                for (int y = 0; repeat && y < yTimes; y++)
+                for (int y = yOffset; y < yTimes; y++)
                 {
-                    for (int z = 0; repeat && z < zTimes; z++)
+                    for (int z = zOffset; z < zTimes; z++)
                     {
                         action.Invoke();
                     }

@@ -134,15 +134,15 @@ namespace PiwotToolsLib.PMath
             y = t;
         }
 
-        ///<summary>Returns a new instance of Int2 with swapped x and y values.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with swapped x and y values.
         ///</summary>
-        ///<param name="i">The instance of Int2 class to flip.</param>
+        ///<param name="i">The instance of <see cref="Int2"/> class to flip.</param>
         public static Int2 Flip(Int2 i)
         {
             return i.Flipped();
         }
 
-        ///<summary>Returns a new instance of Int2 with swapped x and y values.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with swapped x and y values.
         ///</summary>
         public Int2 Flipped()
         {
@@ -224,7 +224,7 @@ namespace PiwotToolsLib.PMath
         }
 
 
-        ///<summary>Return a new instance of Int2 with values of x and y rotated in clockwise direction.
+        ///<summary>Return a new instance of <see cref="Int2"/> with values of x and y rotated in clockwise direction.
         ///</summary>
         public Int2 RotatedRight()
         {
@@ -233,7 +233,7 @@ namespace PiwotToolsLib.PMath
             return i;
         }
 
-        ///<summary>Return a new instance of Int2 with values of x and y rotated in anti-clockwise direction.
+        ///<summary>Return a new instance of <see cref="Int2"/> with values of x and y rotated in anti-clockwise direction.
         ///</summary>
         public Int2 RotatedLeft()
         {
@@ -244,7 +244,7 @@ namespace PiwotToolsLib.PMath
 
 
         /// <summary>
-        /// Return a new instance of Int2 with values of x and y rotated in a given direction.
+        /// Return a new instance of <see cref="Int2"/> with values of x and y rotated in a given direction.
         /// </summary>
         /// <param name="direction">The direction of rotation, positive numbers being clockwise.</param>
         public Int2 Rotated(int direction)
@@ -255,7 +255,7 @@ namespace PiwotToolsLib.PMath
         }
 
         /// <summary>
-        /// Returns a direction closest to a given vector where "Up"(0, 1) is 0, "Right"(1, 0) is 1, "Down"(0, -1) is 2, "Left"(-1, 0) is 3. Will return 0 if vector==Int2.Zero
+        /// Returns a direction closest to a given vector where "Up"(0, 1) is 0, "Right"(1, 0) is 1, "Down"(0, -1) is 2, "Left"(-1, 0) is 3. Will return 0 if vector==<see cref="Int2"/>.Zero
         /// </summary>
         /// <param name="vector"></param>
         /// <returns></returns>
@@ -274,7 +274,7 @@ namespace PiwotToolsLib.PMath
 
         }
         /// <summary>
-        /// Returns a Int2 instance pointing in a given drection. Works for all values, as they are mapped to one of four(0,1,2,3) possible directions in a looping manner.
+        /// Returns a <see cref="Int2"/> instance pointing in a given drection. Works for all values, as they are mapped to one of four(0,1,2,3) possible directions in a looping manner.
         /// </summary>
         /// <param name="direction">Any number</param>
         /// <returns></returns>
@@ -298,18 +298,18 @@ namespace PiwotToolsLib.PMath
 
         }
 
-        ///<summary>Returns a new instance of Int2 with values of x and y clamped between 0 and inclusiveMax.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with values of x and y clamped between 0 and inclusiveMax.
         ///</summary>
-        ///<param name="i">The instance of Int2 class to be clamped.</param>
+        ///<param name="i">The instance of <see cref="Int2"/> class to be clamped.</param>
         ///<param name="inclusiveMax">The inclusive upper bound of the clamping range.</param>
         public static Int2 Clamp(Int2 i, int inclusiveMax)
         {
             return new Int2(Arit.Clamp(i.x, inclusiveMax), Arit.Clamp(i.y, inclusiveMax));
         }
 
-        ///<summary>Returns a new instance of Int2 with values of x and y clamped between inclusiveMin and inclusiveMax.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with values of x and y clamped between inclusiveMin and inclusiveMax.
         ///</summary>
-        ///<param name="i">The instance of Int2 class to be clamped.</param>
+        ///<param name="i">The instance of <see cref="Int2"/> class to be clamped.</param>
         ///<param name="inclusiveMin">The inclusive lower bound of the clamping range.</param>
         ///<param name="inclusiveMax">The inclusive upper bound of the clamping range.</param>
         public static Int2 Clamp(Int2 i, int inclusiveMin, int inclusiveMax)
@@ -317,18 +317,18 @@ namespace PiwotToolsLib.PMath
             return new Int2(Arit.Clamp(i.x, inclusiveMin, inclusiveMax), Arit.Clamp(i.y, inclusiveMin, inclusiveMax));
         }
 
-        ///<summary>Returns a new instance of Int2 with values of x and y clamped between 0 and respective inclusiveMax values.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with values of x and y clamped between 0 and respective inclusiveMax values.
         ///</summary>
-        ///<param name="i">The instance of Int2 class to be clamped.</param>
+        ///<param name="i">The instance of <see cref="Int2"/> class to be clamped.</param>
         ///<param name="inclusiveMax">The respective inclusive upper bounds of the clamping range.</param>
         public static Int2 Clamp(Int2 i, Int2 inclusiveMax)
         {
             return new Int2(Arit.Clamp(i.x, inclusiveMax.x), Arit.Clamp(i.y, inclusiveMax.y));
         }
 
-        ///<summary>Returns a new instance of Int2 with values of x and y clamped between respective inclusiveMin and inclusiveMax values.
+        ///<summary>Returns a new instance of <see cref="Int2"/> with values of x and y clamped between respective inclusiveMin and inclusiveMax values.
         ///</summary>
-        ///<param name="i">The instance of Int2 class to be clamped.</param>
+        ///<param name="i">The instance of <see cref="Int2"/> class to be clamped.</param>
         ///<param name="inclusiveMin">The respective inclusive lower bounds of the clamping range.</param>
         ///<param name="inclusiveMax">The respective inclusive upper bounds of the clamping range.</param>
         public static Int2 Clamp(Int2 i, Int2 inclusiveMin, Int2 inclusiveMax)
@@ -373,17 +373,125 @@ namespace PiwotToolsLib.PMath
             Arit.Clamp(x, inclusiveMin.x, inclusiveMax.x);
             Arit.Clamp(y, inclusiveMin.y, inclusiveMax.y);
         }
+
+        /// <summary>
+        /// Function designed for grid based systems, that require chunking or similar scale-step operations.
+        /// Divides a given <see cref="Int2"/> by a given divisor while taking into account negative coordinates.
+        /// <para>
+        /// 
+        /// </para>
+        /// </summary>
+        /// <param name="int2"></param>
+        /// <param name="divisor"></param>
+        /// <returns></returns>
+        public static Int2 DivideOnGrid(Int2 int2, int divisor)
+        {
+            Int2 pos = int2 / divisor;
+            if (int2.X < 0 && int2.X % divisor != 0)
+            {
+                pos.X -= 1;
+            }
+            if (int2.Y < 0 && int2.Y % divisor != 0)
+            {
+                pos.Y -= 1;
+            }
+            return pos;
+        }
+        /// <summary>
+        /// Returns a list of grid positions that are at most maxDistance units from the middle point.
+        /// </summary>
+        /// <param name="position">Position of the middle of the virtual circle</param>
+        /// <param name="maxDistance">Maximal distance.</param>
+        /// <param name="minDistance">TODO</param>
+        /// <returns></returns>
+        public static List<Int2> GetGridPositions(Int2 position, float maxDistance, float minDistance = 0)
+        {
+            List<Int2> positions = new List<Int2>();
+            float tempDistance = maxDistance / (float)Constants.Root2;
+            int R = (int)Math.Floor(maxDistance);
+            int r = (int)Math.Floor(tempDistance);
+            int p = (int)Math.Floor(maxDistance - tempDistance);
+            int n = R - r;
+            int P = R - p;
+            float powDist = maxDistance * maxDistance;
+            int X = position.X;
+            int Y = position.Y;
+            Data.Loops.ForLoop(r, r, 
+                (x, y) => {
+                    positions.Add(new Int2(X + x, Y + y));
+                    if(x != 0 && y != 0)
+                    {
+                        positions.Add(new Int2(X - x, Y + y));
+                        positions.Add(new Int2(X + x, Y - y));
+                        positions.Add(new Int2(X - x, Y - y));
+                    }
+                }
+                );
+            for (int x = 0; x < r; x++)
+            {
+                for (int y = r; y <= R; y++)
+                {
+                    if (powDist <= x + y)
+                    {
+                        positions.Add(new Int2(X + x, Y + y));
+                        if (y != 0 && y != 0)
+                        {
+                            positions.Add(new Int2(X - x, Y + y));
+                            positions.Add(new Int2(X + x, Y - y));
+                            positions.Add(new Int2(X - x, Y - y));
+                        }
+                    }
+                }
+            }
+
+            for (int x = r; x <= R; x++)
+            {
+                for (int y = 0; y < P; y++)
+                {
+                    if (powDist <= x + y)
+                    {
+                        positions.Add(new Int2(X + x, Y + y));
+                        if (y != 0 && y != 0)
+                        {
+                            positions.Add(new Int2(X - x, Y + y));
+                            positions.Add(new Int2(X + x, Y - y));
+                            positions.Add(new Int2(X - x, Y - y));
+                        }
+                    }
+                }
+            }
+
+            for (int x = r; x < P; x++)
+            {
+                for (int y = P; y <= R; y++)
+                {
+                    if (powDist <= x + y)
+                    {
+                        positions.Add(new Int2(X + x, Y + y));
+                        if (y != 0 && y != 0)
+                        {
+                            positions.Add(new Int2(X - x, Y + y));
+                            positions.Add(new Int2(X + x, Y - y));
+                            positions.Add(new Int2(X - x, Y - y));
+                        }
+                    }
+                }
+            }
+
+            return positions;
+        }
+
         #endregion
 
         #region Random
-        ///<summary>Returns new instance of Int2 with random values of x and y.
+        ///<summary>Returns new instance of <see cref="Int2"/> with random values of x and y.
         ///</summary>
         public static Int2 Random()
         {
             return new Int2(Rand.Int(), Rand.Int());
         }
 
-        ///<summary> Returns new instance of Int2 with random values of x and y.
+        ///<summary> Returns new instance of <see cref="Int2"/> with random values of x and y.
         ///<para>Both x and y will be winthin range from 0 to exclusiveMax.</para>
         ///</summary>
         ///<param name="exclusiveMax">The upper bound of the range(exclusive)</param>
@@ -392,7 +500,7 @@ namespace PiwotToolsLib.PMath
             return new Int2(Rand.Int(exclusiveMax), Rand.Int(exclusiveMax));
         }
 
-        ///<summary> Returns new instance of Int2 with random values of x and y.
+        ///<summary> Returns new instance of <see cref="Int2"/> with random values of x and y.
         ///<para>Both x and y will be winthin range from 0 to respective exclusiveMax.</para>
         ///</summary>
         ///<param name="exclusiveMax">The upper respective bounds of the range(exclusive)</param>
@@ -401,7 +509,7 @@ namespace PiwotToolsLib.PMath
             return new Int2(Rand.Int(exclusiveMax.x), Rand.Int(exclusiveMax.y));
         }
 
-        ///<summary> Returns new instance of Int2 with random values of x and y.
+        ///<summary> Returns new instance of <see cref="Int2"/> with random values of x and y.
         ///<para>Both x and y will be winthin range from inclusiveMin to exclusiveMax.</para>
         ///</summary>
         ///<param name="inclusiveMin">The lower bound of the range(inclusive)</param>
@@ -411,7 +519,7 @@ namespace PiwotToolsLib.PMath
             return new Int2(Rand.Int(inclusiveMin, exclusiveMax), Rand.Int(inclusiveMin, exclusiveMax));
         }
 
-        ///<summary> Returns new instance of Int2 with random values of x and y.
+        ///<summary> Returns new instance of <see cref="Int2"/> with random values of x and y.
         ///<para>Both x and y will be winthin range from respective inclusiveMin to respective exclusiveMax.</para>
         ///</summary>
         ///<param name="inclusiveMin">The lower respective bounds of the range(inclusive)</param>
@@ -493,7 +601,7 @@ namespace PiwotToolsLib.PMath
 
         #region Operators
         /// <summary>
-        /// The pointwise addition operation between two Int2 objects.
+        /// The pointwise addition operation between two <see cref="Int2"/> objects.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="i2"></param>
@@ -501,7 +609,7 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator +(Int2 i1, Int2 i2) { return new Int2(i1.x + i2.x, i1.y + i2.y); }
 
         /// <summary>
-        /// The addition operation between a Int2 object and a integer. Both X and Y are incremented by a given value.
+        /// The addition operation between a <see cref="Int2"/> object and a integer. Both X and Y are incremented by a given value.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="x"></param>
@@ -509,7 +617,7 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator +(Int2 i1, int x) { return new Int2(i1.x + x, i1.y + x); }
 
         /// <summary>
-        /// The pointwise subtraction operation between two Int2 objects.
+        /// The pointwise subtraction operation between two <see cref="Int2"/> objects.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="i2"></param>
@@ -517,7 +625,7 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator -(Int2 i1, Int2 i2) { return new Int2(i1.x - i2.x, i1.y - i2.y); }
 
         /// <summary>
-        /// The subtraction operation between a Int2 object and a integer. Both X and Y are decremented by a given value.
+        /// The subtraction operation between a <see cref="Int2"/> object and a integer. Both X and Y are decremented by a given value.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="x"></param>
@@ -525,7 +633,7 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator -(Int2 i1, int x) { return new Int2(i1.x - x, i1.y - x); }
 
         /// <summary>
-        /// The pointwise multiplication operation between two Int2 objects.
+        /// The pointwise multiplication operation between two <see cref="Int2"/> objects.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="i2"></param>
@@ -533,7 +641,7 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator *(Int2 i1, Int2 i2) { return new Int2(i1.x * i2.x, i1.y * i2.y); }
 
         /// <summary>
-        /// The multiplication operation between a Int2 object and a integer. Both X and Y are multiplied by a given value.
+        /// The multiplication operation between a <see cref="Int2"/> object and a integer. Both X and Y are multiplied by a given value.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="x"></param>
@@ -541,14 +649,14 @@ namespace PiwotToolsLib.PMath
         public static Int2 operator *(Int2 i1, int x) { return new Int2(i1.x * x, i1.y * x); }
 
         /// <summary>
-        /// The pointwise division operation between two Int2 objects.
+        /// The pointwise division operation between two <see cref="Int2"/> objects.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="i2"></param>
         /// <returns></returns>
         public static Int2 operator /(Int2 i1, Int2 i2) { return new Int2(i1.x / i2.x, i1.y / i2.y); }
         /// <summary>
-        /// The division operation between a Int2 object and a integer. Both X and Y are divided by a given value.
+        /// The division operation between a <see cref="Int2"/> object and a integer. Both X and Y are divided by a given value.
         /// </summary>
         /// <param name="i1"></param>
         /// <param name="x"></param>
@@ -657,7 +765,7 @@ namespace PiwotToolsLib.PMath
         }
 
         /// <summary>
-        /// Returns a string representation of this Int2 object.
+        /// Returns a <see cref="string"/> representation of this <see cref="Int2"/> object.
         /// </summary>
         /// <returns></returns>
         override public string ToString()
@@ -666,7 +774,7 @@ namespace PiwotToolsLib.PMath
         }
 
         /// <summary>
-        /// Copares two Int2 objects.
+        /// Copares two <see cref="Int2"/> objects.
         /// </summary>
         /// <param name="obj">The other object</param>
         /// <returns></returns>
