@@ -63,6 +63,7 @@
     <Compile Include="Calc\Exceptions\InvalidTokenSymbolException.cs" />
     <Compile Include="Calc\Exceptions\WrongNumberOfArgumentsException.cs" />
     <Compile Include="Calc\CalculatorBase.cs" />
+    <Compile Include="Data\Manipulator.cs" />
     <Compile Include="PMath\Constants.cs" />
     <Compile Include="Text\Bars.cs" />
     <Compile Include="Text\Boxes.cs" />

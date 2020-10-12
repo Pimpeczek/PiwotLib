@@ -402,9 +402,8 @@ namespace PiwotToolsLib.PMath
         /// </summary>
         /// <param name="position">Position of the middle of the virtual circle</param>
         /// <param name="maxDistance">Maximal distance.</param>
-        /// <param name="minDistance">TODO</param>
         /// <returns></returns>
-        public static List<Int2> GetGridPositions(Int2 position, float maxDistance, float minDistance = 0)
+        public static List<Int2> GetGridPositions(Int2 position, float maxDistance)
         {
             List<Int2> positions = new List<Int2>();
             float tempDistance = maxDistance / (float)Constants.Root2;
@@ -416,10 +415,12 @@ namespace PiwotToolsLib.PMath
             float powDist = maxDistance * maxDistance;
             int X = position.X;
             int Y = position.Y;
-            Data.Loops.ForLoop(r, r, 
-                (x, y) => {
+            for (int x = 0; x <= r; x++)
+            {
+                for (int y = 0; y <= r; y++)
+                {
                     positions.Add(new Int2(X + x, Y + y));
-                    if(x != 0)
+                    if (x != 0)
                     {
                         positions.Add(new Int2(X - x, Y + y));
                         if (y != 0)
@@ -436,7 +437,7 @@ namespace PiwotToolsLib.PMath
                         }
                     }
                 }
-                );
+            }
             for (int x = 0; x < r; x++)
             {
                 for (int y = r; y <= R; y++)
@@ -521,6 +522,34 @@ namespace PiwotToolsLib.PMath
             return positions;
         }
 
+        /// <summary>
+        /// Returns a list of positions of squares that intersect inclusively in a given region.
+        /// <para>
+        /// Positions are scaled so that one unit is equal to provided squareSize if <c>returnScaledPositions</c> is set to <see langword="true"/>.
+        /// </para>
+        /// </summary>
+        /// <param name="regionLowerLeft">Position of the lower left corener of checked region.</param>
+        /// <param name="regionSize">Size of the region.</param>
+        /// <param name="squareSize">Size of the grid square.</param>
+        /// <param name="returnScaledPositions">Determines if the returned positions should be scaled to match square size.</param>
+        /// <returns></returns>
+        public static List<Int2> GetIntersectedSquares(Int2 regionLowerLeft, Int2 regionSize, int squareSize, bool returnScaledPositions = true)
+        {
+            List<Int2> intersectedSquares = new List<Int2>();
+            Int2 regionUpperRight = DivideOnGrid(regionLowerLeft + regionSize, squareSize);
+            regionLowerLeft = DivideOnGrid(regionLowerLeft, squareSize);
+            for (int x = regionLowerLeft.X; x <= regionUpperRight.X; x++)
+            {
+                for (int y = regionLowerLeft.Y; y <= regionUpperRight.Y; y++)
+                {
+                    if(returnScaledPositions)
+                        intersectedSquares.Add(new Int2(x, y));
+                    else
+                        intersectedSquares.Add(new Int2(x * squareSize, y * squareSize));
+                }
+            }
+                return intersectedSquares;
+        }
         #endregion
 
         #region Random
