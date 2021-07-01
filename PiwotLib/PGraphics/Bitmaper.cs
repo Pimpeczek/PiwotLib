@@ -63,6 +63,10 @@ namespace PiwotToolsLib.PGraphics
         /// <returns></returns>
         public static Bitmap ResizeToFit(Bitmap bitmap, int width, int height)
         {
+            if (bitmap == null)
+            {
+                return null;
+            }
             float dRatio = (float)width / (float)height;
             float bRatio = (float)bitmap.Width / (float)bitmap.Height;
             if (dRatio < bRatio)
